@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class Autobus {
     private String matricula;
-    private Date annoCompra;
+    private String annoCompra;
     private int numeroPlazas;
 
-    public Autobus(String matricula, Date annoCompra, int numeroPlazas) {
+    public Autobus(String matricula, String annoCompra, int numeroPlazas) {
         this.matricula = matricula;
         this.annoCompra = annoCompra;
         this.numeroPlazas = numeroPlazas;
@@ -18,7 +18,7 @@ public class Autobus {
         return matricula;
     }
 
-    public Date getAnnoCompra() {
+    public String getAnnoCompra() {
         return annoCompra;
     }
 
@@ -31,7 +31,7 @@ public class Autobus {
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
-    public void setAnnoCompra(Date annoCompra) {
+    public void setAnnoCompra(String annoCompra) {
         this.annoCompra = annoCompra;
     }
     public void setNumeroPlazas(int numeroPlazas) {
