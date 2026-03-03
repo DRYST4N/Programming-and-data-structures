@@ -46,6 +46,7 @@ public class main {
     }
 
     public static boolean menuPrincipal(){
+        boolean respuesta = false;
         Scanner sc = new Scanner(System.in);
 
         opcionesMenuPrincipal();
@@ -53,12 +54,17 @@ public class main {
         int opcion = sc.nextInt();
         switch(opcion){
             case 1:
-                menuListado();
-            case 2:
                 menuMantenimiento();
+
+                break;
+            case 2:
+                menuListado();
+
+                break;
             default:
-                return true;
+                respuesta = true;
         }
+        return respuesta;
     }
 
 
