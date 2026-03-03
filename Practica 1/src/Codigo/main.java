@@ -1,12 +1,14 @@
 package Codigo;
 
+import java.util.Scanner;
+
 public class main {
    
     public static void main(String [] args){
-        
+        menuPrincipal();
     }
 
-    public static void menuPrincipal(){
+    public static void opcionesMenuPrincipal(){
         System.out.println("MENU PRINCIPAL");
         System.out.println();
         System.out.println("1.-Mantenimiento");
@@ -14,7 +16,7 @@ public class main {
         System.out.println("0.-Salir");
     }
 
-    public static void menuMantenimiento(){
+    public static void opcionesMenuMantenimiento(){
         System.out.println("MENU MANTENIMIENTO");
         System.out.println();
         System.out.println("1.-Alta de autobus");
@@ -28,7 +30,7 @@ public class main {
         System.out.println("0.-Volver al menu principal");
     }
 
-    public static void menuListado(){
+    public static void opcionesMenuListado(){
         System.out.println("MENU LISTADO");
         System.out.println("1.-Listado general de autobuses ordenado por numero de plazas (orden ascendente)");
         System.out.println("2.-Listado general de autobuses ordenado por numero de plazas (orden descendente)");
@@ -43,7 +45,30 @@ public class main {
         System.out.println("0.-Volver al menu principal");
     }
 
-    public static boolean listadoDeElementos(int eleccion){ //Falta añadir la lista enlazada por parametro y los metodos que devuelvan true si se ha completado de forma correcta y false si no
+    public static boolean menuPrincipal(){
+        Scanner sc = new Scanner(System.in);
+
+        opcionesMenuPrincipal();
+
+        int opcion = sc.nextInt();
+        switch(opcion){
+            case 1:
+                menuListado();
+            case 2:
+                menuMantenimiento();
+            default:
+                return true;
+        }
+    }
+
+
+    public static boolean menuListado(){//Falta añadir la lista enlazada por parametro y los metodos que devuelvan true si se ha completado de forma correcta y false si no
+        Scanner sc = new Scanner(System.in);
+
+        opcionesMenuListado();
+
+        int eleccion = sc.nextInt();
+
         switch (eleccion) {
             case 1:
                 System.out.println("Listado general de autobuses ordenado por numero de plazas".toUpperCase()+" (orden ascendente)");
@@ -78,7 +103,13 @@ public class main {
         }
     }
 
-    public static boolean opcionesDeMantenimiento(int eleccion){ //Falta añadir la lista enlazada por parametro y los metodos que devuelvan true si se ha completado de forma correcta y false si no
+    public static boolean menuMantenimiento(){//Falta añadir la lista enlazada por parametro y los metodos que devuelvan true si se ha completado de forma correcta y false si no
+        Scanner sc = new Scanner(System.in); //Para escanear los datos por teclado
+
+        opcionesMenuMantenimiento(); //Llamamos a las opciones del menu
+
+        int eleccion = sc.nextInt();//Escaneamos y guardamos la eleccion para usarla
+
         switch (eleccion) {
             case 1: //Alta autobus
                 
@@ -93,7 +124,6 @@ public class main {
             case 6: //Modificacion viaje
                 
             default:
-                System.out.println("Volver al menu principal");
                 return true;
         }
     }
