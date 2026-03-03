@@ -1,4 +1,4 @@
-import java.util.Scanner;
+package Codigo;
 
 public class main {
    
@@ -47,31 +47,31 @@ public class main {
         switch (eleccion) {
             case 1:
                 System.out.println("Listado general de autobuses ordenado por numero de plazas".toUpperCase()+" (orden ascendente)");
-                elementos_lista();
+                elementosLista();
             case 2:
                 System.out.println("Listado general de autobuses ordenado por numero de plazas".toUpperCase()+" (orden descendente)");
-                elementos_lista();
+                elementosLista();
             case 3:
                 System.out.println("Listado general de viajes".toUpperCase());
-                elementos_lista();
+                elementosLista();
             case 4:
                 System.out.println("Listado de viajes que parten de una ciudad determinada".toUpperCase());
-                elementos_lista();
+                elementosLista();
             case 5:
                 System.out.println("Listado de viajes que llegan a una ciudad determinada".toUpperCase());
-                elementos_lista();
+                elementosLista();
             case 6:
                 System.out.println("Listado de autobuses que tienen una capacidad mayor o igual a la indicada por el usuario".toUpperCase());
-                elementos_lista();
+                elementosLista();
             case 7:
                 System.out.println("Listado de autobus o autobuses que realizan la mayor cantidad de viajes".toUpperCase());
-                elementos_lista();
+                elementosLista();
             case 8:
                 System.out.println("Cantidad total de viajes que realizan los autobuses de la empresa".toUpperCase());
-                elementos_lista();
+                elementosLista();
             case 9:
                 System.out.println("Cantidad total de pasajeros que viajan de una ciudad a otra".toUpperCase());
-                elementos_lista();
+                elementosLista();
             default:
                 System.out.println("Volver al menu principal");
                 return true;
