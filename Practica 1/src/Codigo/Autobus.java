@@ -6,6 +6,7 @@ public class Autobus {
     private String matricula;
     private String annoCompra;
     private int numeroPlazas;
+    //El autobus deberia tener un atributo LEG<Viajes>
 
     public Autobus(String matricula, String annoCompra, int numeroPlazas) {
         this.matricula = matricula;

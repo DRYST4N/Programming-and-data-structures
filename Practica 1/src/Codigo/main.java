@@ -45,97 +45,122 @@ public class main {
         System.out.println("0.-Volver al menu principal");
     }
 
-    public static boolean menuPrincipal(){
-        boolean respuesta = false;
+    public static void menuPrincipal() {
+
+        boolean salida = false;
         Scanner sc = new Scanner(System.in);
 
-        opcionesMenuPrincipal();
+        do {
+            opcionesMenuPrincipal();
+            zonaDeEleccion();
 
-        int opcion = sc.nextInt();
-        switch(opcion){
-            case 1:
-                menuMantenimiento();
-
-                break;
-            case 2:
-                menuListado();
-
-                break;
-            default:
-                respuesta = true;
-        }
-        return respuesta;
+            int opcion = sc.nextInt();
+            switch (opcion) {
+                case 1:
+                    menuMantenimiento();
+                    break;
+                case 2:
+                    menuListado();
+                    break;
+                default:
+                    System.out.println("Saliendo del programa");
+                    salida = true;
+                    break;
+            }
+        }while (!salida);
     }
 
 
-    public static boolean menuListado(){//Falta añadir la lista enlazada por parametro y los metodos que devuelvan true si se ha completado de forma correcta y false si no
+    public static void menuListado(){//Falta añadir la lista enlazada por parametro y los metodos que devuelvan true si se ha completado de forma correcta y false si no
+
+        boolean salida = false;
         Scanner sc = new Scanner(System.in);
 
-        opcionesMenuListado();
+        do{
+            opcionesMenuListado();
+            zonaDeEleccion();
+            int eleccion = sc.nextInt();
 
-        int eleccion = sc.nextInt();
-
-        switch (eleccion) {
-            case 1:
-                System.out.println("Listado general de autobuses ordenado por numero de plazas".toUpperCase()+" (orden ascendente)");
-                elementosLista();
-            case 2:
-                System.out.println("Listado general de autobuses ordenado por numero de plazas".toUpperCase()+" (orden descendente)");
-                elementosLista();
-            case 3:
-                System.out.println("Listado general de viajes".toUpperCase());
-                elementosLista();
-            case 4:
-                System.out.println("Listado de viajes que parten de una ciudad determinada".toUpperCase());
-                elementosLista();
-            case 5:
-                System.out.println("Listado de viajes que llegan a una ciudad determinada".toUpperCase());
-                elementosLista();
-            case 6:
-                System.out.println("Listado de autobuses que tienen una capacidad mayor o igual a la indicada por el usuario".toUpperCase());
-                elementosLista();
-            case 7:
-                System.out.println("Listado de autobus o autobuses que realizan la mayor cantidad de viajes".toUpperCase());
-                elementosLista();
-            case 8:
-                System.out.println("Cantidad total de viajes que realizan los autobuses de la empresa".toUpperCase());
-                elementosLista();
-            case 9:
-                System.out.println("Cantidad total de pasajeros que viajan de una ciudad a otra".toUpperCase());
-                elementosLista();
-            default:
-                System.out.println("Volver al menu principal");
-                return true;
-        }
+            switch (eleccion) {
+                case 1:
+                    System.out.println("Listado general de autobuses ordenado por numero de plazas".toUpperCase()+" (orden ascendente)");
+                    elementosLista();
+                    break;
+                case 2:
+                    System.out.println("Listado general de autobuses ordenado por numero de plazas".toUpperCase()+" (orden descendente)");
+                    elementosLista();
+                    break;
+                case 3:
+                    System.out.println("Listado general de viajes".toUpperCase());
+                    elementosLista();
+                    break;
+                case 4:
+                    System.out.println("Listado de viajes que parten de una ciudad determinada".toUpperCase());
+                    elementosLista();
+                    break;
+                case 5:
+                    System.out.println("Listado de viajes que llegan a una ciudad determinada".toUpperCase());
+                    elementosLista();
+                    break;
+                case 6:
+                    System.out.println("Listado de autobuses que tienen una capacidad mayor o igual a la indicada por el usuario".toUpperCase());
+                    elementosLista();
+                    break;
+                case 7:
+                    System.out.println("Listado de autobus o autobuses que realizan la mayor cantidad de viajes".toUpperCase());
+                    elementosLista();
+                    break;
+                case 8:
+                    System.out.println("Cantidad total de viajes que realizan los autobuses de la empresa".toUpperCase());
+                    elementosLista();
+                    break;
+                case 9:
+                    System.out.println("Cantidad total de pasajeros que viajan de una ciudad a otra".toUpperCase());
+                    elementosLista();
+                    break;
+                default:
+                    System.out.println("Volver al menu principal");
+                    salida = true;
+                    break;
+            }
+        }while (!salida);
     }
 
-    public static boolean menuMantenimiento(){//Falta añadir la lista enlazada por parametro y los metodos que devuelvan true si se ha completado de forma correcta y false si no
+    public static void menuMantenimiento() {//Falta añadir la lista enlazada por parametro y los metodos que devuelvan true si se ha completado de forma correcta y false si no
+
+        boolean salida = false;
         Scanner sc = new Scanner(System.in); //Para escanear los datos por teclado
 
-        opcionesMenuMantenimiento(); //Llamamos a las opciones del menu
+        do {
+            opcionesMenuMantenimiento(); //Llamamos a las opciones del menu
+            zonaDeEleccion();
 
-        int eleccion = sc.nextInt();//Escaneamos y guardamos la eleccion para usarla
+            int eleccion = sc.nextInt();//Escaneamos y guardamos la eleccion para usarla
 
-        switch (eleccion) {
-            case 1: //Alta autobus
-                
-            case 2: //Baja autobus
-                
-            case 3: //Modificacion autobus
-                
-            case 4: //Alta viaje
-                
-            case 5: //Baja viaje
-                
-            case 6: //Modificacion viaje
-                
-            default:
-                return true;
-        }
+            switch (eleccion) {
+                case 1: //Alta autobus
+                    break;
+                case 2: //Baja autobus
+                    break;
+                case 3: //Modificacion autobus
+                    break;
+                case 4: //Alta viaje
+                    break;
+                case 5: //Baja viaje
+                    break;
+                case 6: //Modificacion viaje
+                    break;
+                default:
+                    System.out.println("Volver al menu principal");
+                    salida = true;
+                    break;
+            }
+        } while (!salida);
+
     }
-
 
     public static void elementosLista(){
         System.out.println("\n\tMatricula\tAño Compra\tPlazas\n");
     }
+    public static void zonaDeEleccion(){System.out.print("\nSelecione una opcion:");}
 }
