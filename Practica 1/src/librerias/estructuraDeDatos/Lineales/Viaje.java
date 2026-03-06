@@ -1,6 +1,4 @@
-package Codigo;
-
-import java.sql.Time;
+package librerias.estructuraDeDatos.Lineales;
 
 public class Viaje {
     private int codigo;

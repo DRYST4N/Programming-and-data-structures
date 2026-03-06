@@ -1,11 +1,16 @@
-package Codigo;
+package librerias.estructuraDeDatos.Lineales;
 
 import java.util.Scanner;
+import librerias.excepcionesDeUsuario.Validaciones;
 
 public class main {
    
     public static void main(String [] args){
-        menuPrincipal();
+        try{
+            menuPrincipal();
+        }catch (Exception e){
+            System.out.println("Error: "+e.getMessage());
+        }
     }
 
     public static void opcionesMenuPrincipal(){
@@ -51,21 +56,27 @@ public class main {
         Scanner sc = new Scanner(System.in);
 
         do {
-            opcionesMenuPrincipal();
-            zonaDeEleccion();
+            try {
+                opcionesMenuPrincipal();
+                zonaDeEleccion();
 
-            int opcion = sc.nextInt();
-            switch (opcion) {
-                case 1:
-                    menuMantenimiento();
-                    break;
-                case 2:
-                    menuListado();
-                    break;
-                default:
-                    System.out.println("Saliendo del programa");
-                    salida = true;
-                    break;
+                int opcion = sc.nextInt();
+                Validaciones.numeroEntero(opcion);
+
+                switch (opcion) {
+                    case 1:
+                        menuMantenimiento();
+                        break;
+                    case 2:
+                        menuListado();
+                        break;
+                    case 0:
+                        System.out.println("Saliendo del programa");
+                        salida = true;
+                        break;
+                }
+            }catch (NumberFormatException e){
+                throw e;
             }
         }while (!salida);
     }
@@ -79,7 +90,9 @@ public class main {
         do{
             opcionesMenuListado();
             zonaDeEleccion();
+
             int eleccion = sc.nextInt();
+            Validaciones.numeroEntero(eleccion);
 
             switch (eleccion) {
                 case 1:
@@ -136,6 +149,7 @@ public class main {
             zonaDeEleccion();
 
             int eleccion = sc.nextInt();//Escaneamos y guardamos la eleccion para usarla
+            Validaciones.numeroEntero(eleccion);
 
             switch (eleccion) {
                 case 1: //Alta autobus

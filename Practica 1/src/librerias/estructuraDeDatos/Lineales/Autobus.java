@@ -1,17 +1,16 @@
-package Codigo;
+package librerias.estructuraDeDatos.Lineales;
 
-import java.util.Date;
-
-public class Autobus {
+public class Autobus implements Comparable<Autobus> {
     private String matricula;
     private String annoCompra;
     private int numeroPlazas;
-    //El autobus deberia tener un atributo LEG<Viajes>
+    private LEG<Viaje> viajes;
 
     public Autobus(String matricula, String annoCompra, int numeroPlazas) {
         this.matricula = matricula;
         this.annoCompra = annoCompra;
         this.numeroPlazas = numeroPlazas;
+        this.viajes = new LEG<Viaje>();
     }
 
     // Getters
@@ -39,4 +38,9 @@ public class Autobus {
         this.numeroPlazas = numeroPlazas;
     }
 
+    @Override
+    public int compareTo(Autobus o) {
+        return Integer.compare(this.numeroPlazas, o.numeroPlazas);
+        //this.numeroPlazas == o.numeroPlazas ? 0 : (this.numeroPlazas > o.numeroPlazas ? 1 : -1);
+    }
 }

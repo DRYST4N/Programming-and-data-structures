@@ -1,6 +1,6 @@
-package Codigo;
+package librerias.estructuraDeDatos.Lineales;
 
-import Interfaces.INodo;
+import librerias.estructuraDeDatos.Modelo.INodo;
 
 public class NodoLEG<E> implements INodo  {
     private E dato;

@@ -1,6 +1,6 @@
-package Interfaces;
+package librerias.estructuraDeDatos.Modelo;
 
-import Codigo.NodoLEG;
+import librerias.estructuraDeDatos.Lineales.NodoLEG;
 
 public interface INodo {
 
