@@ -4,10 +4,12 @@ public class Validaciones {
 
     public class Validaciones1{}
 
-    public static int numeroEntero(int numero) throws NumberFormatException{
-        if(numero>=0 && numero<=9){
-            return numero;
+    public static int numeroEntero(int numero,int total) throws IllegalArgumentException{
+        for (int i = 0; i < total;i++){
+            if(numero == i){
+                return numero;
+            }
         }
-        throw new NumberFormatException("Introduce un numero entero");
+        throw new IllegalArgumentException("Introduce un numero entero");
     }
 }

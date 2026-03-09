@@ -44,11 +44,11 @@ public class LDEG<E extends Comparable<E>> implements ILEGS<E> {
         NodoLDEG<E> aux = this.primero;
         NodoLDEG<E> enc = null;
 
-        while (aux!=null && !aux.getDato().equals(e)){
+        /*while (aux!=null && !aux.getDato().equals(e)){
             if (aux.getDato().equals()) {}
             ant = aux;
             aux = aux.getSiguiente();
-        }
+        }*/
     }
 
     @Override

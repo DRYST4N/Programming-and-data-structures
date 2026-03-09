@@ -18,18 +18,23 @@ public class LEG<E> implements ILEGS {
     }
 
     @Override
-    public void InsertItem(NodoLEG n) {
+    public void insertarElemento(Object o) {
 
     }
 
     @Override
-    public void DeleteItem(NodoLEG n) {
+    public void borrarElemento(Object o) {
 
     }
 
     @Override
-    public void UpdateItem(NodoLEG n) {
+    public void modificarElemento(Object o) {
 
+    }
+
+    @Override
+    public boolean existeElemento(Object o) {
+        return false;
     }
 
 }
