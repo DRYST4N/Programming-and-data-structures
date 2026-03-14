@@ -40,7 +40,7 @@ public class Viaje {
     }
 
     public boolean viajeSimilar(Viaje viaje){
-        return this.origen.equals(viaje.getOrigen()) && this.destino.equals(viaje.getDestino());
+        return this.origen.equals(viaje.getOrigen()) && this.destino.equals(viaje.getDestino()) &&  this.hora.equals(viaje.getHora());
     }
 
     @Override
@@ -57,5 +57,10 @@ public class Viaje {
         Viaje viaje = (Viaje) obj;
 
         return this.codigo == viaje.codigo;
+    }
+
+    @Override
+    public String toString() {
+        return "[Codigo viaje]:"+this.codigo+"\n[Origen]:"+this.origen+"\n[Destino]:"+this.destino+"\n[Hora]:"+this.hora;
     }
 }

@@ -41,6 +41,45 @@ public class Autobus implements Comparable<Autobus> {
     }
     public void setViajes(LEG<Viaje> viajes) { this.viajes = viajes; }
 
+    public void registrarViaje(Viaje viaje) {
+        for (int i = 0; i < this.viajes.talla(); i++){
+            Viaje viajes = this.viajes.getElemento(i);
+
+            if (!viajes.viajeSimilar(viaje)){
+                this.viajes.insertarElemento(viajes);
+            }
+            else {
+                System.out.println("Ya existe un viaje similar");
+            }
+        }
+    }
+
+    public void bajaViajes(Viaje viaje) {
+        for (int i = 0; i < this.viajes.talla(); i++){
+            Viaje viajes = this.viajes.getElemento(i);
+
+            if (viajes.equals(viaje)){
+                this.viajes.borrarElemento(viajes);
+            }
+        }
+    }
+
+    public void modificarViajes(Viaje viaje) {
+        for (int i = 0; i < this.viajes.talla(); i++){
+            Viaje viajes = this.viajes.getElemento(i);
+
+            if (viajes.equals(viaje)){
+                this.viajes.modificarElemento(viajes);
+            }
+        }
+    }
+
+    public void listarViajes() {
+        for (int i = 0; i < this.viajes.talla(); i++){
+            System.out.println(this.viajes.getElemento(i).toString());
+        }
+    }
+
     @Override
     public int compareTo(Autobus autobus) {
         return Integer.compare(this.numeroPlazas, autobus.numeroPlazas);

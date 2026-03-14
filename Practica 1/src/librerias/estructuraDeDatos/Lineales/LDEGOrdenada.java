@@ -2,12 +2,12 @@ package librerias.estructuraDeDatos.Lineales;
 
 import librerias.estructuraDeDatos.Modelo.ILEGS;
 
-public class LDEG<E extends Comparable<E>> implements ILEGS<E> {
+public class LDEGOrdenada<E extends Comparable<E>> implements ILEGS<E> {
 
     private NodoLDEG<E> primero;
     private int talla;
 
-    public LDEG() {
+    public LDEGOrdenada() {
         this.primero=null;
         this.talla=0;
     }
@@ -83,6 +83,11 @@ public class LDEG<E extends Comparable<E>> implements ILEGS<E> {
             }
             aux = aux.getSiguiente();
         }
+        return null;
+    }
+
+    @Override
+    public E getElemento(int i) {
         return null;
     }
 }

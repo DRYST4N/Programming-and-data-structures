@@ -58,7 +58,15 @@ public class LEG<E> implements ILEGS<E> {
 
     @Override
     public void modificarElemento(E e) {
+        NodoLEG<E> aux = this.primero;
 
+        while (aux != null) {
+            if(aux.getDato().equals(e)){
+                aux.setDato(e);
+                return;
+            }
+            aux = aux.getSiguiente();
+        }
     }
 
     @Override
@@ -72,6 +80,21 @@ public class LEG<E> implements ILEGS<E> {
             aux = aux.getSiguiente();
         }
         return null;
+    }
+
+    @Override
+    public E getElemento(int i) {
+        NodoLEG<E> aux = this.primero;
+        int  contador = 0;
+
+        while (aux!=null) {
+            if (contador==i) {
+                return aux.getDato();
+            }
+            aux = aux.getSiguiente();
+            contador++;
+        }
+        return  null;
     }
 
 }

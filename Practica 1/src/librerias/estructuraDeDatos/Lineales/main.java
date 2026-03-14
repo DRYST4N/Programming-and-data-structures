@@ -1,6 +1,5 @@
 package librerias.estructuraDeDatos.Lineales;
 
-import java.util.BitSet;
 import java.util.Scanner;
 import librerias.excepcionesDeUsuario.Validaciones;
 
@@ -56,7 +55,7 @@ public class main {
         boolean salida = false;
         Scanner sc = new Scanner(System.in);
 
-        LDEG<Autobus>autobuses = new LDEG<Autobus>();
+        LDEGOrdenada<Autobus> autobuses = new LDEGOrdenada<Autobus>();
 
         do {
             try {
@@ -87,7 +86,7 @@ public class main {
     }
 
 
-    public static void menuListado(LDEG<Autobus>autobuses){//Falta añadir la lista enlazada por parametro y los metodos que devuelvan true si se ha completado de forma correcta y false si no
+    public static void menuListado(LDEGOrdenada<Autobus> autobuses){//Falta añadir la lista enlazada por parametro y los metodos que devuelvan true si se ha completado de forma correcta y false si no
 
         boolean salida = false;
         Scanner sc = new Scanner(System.in);
@@ -148,7 +147,7 @@ public class main {
         }while (!salida);
     }
 
-    public static void menuMantenimiento(LDEG<Autobus>autobuses) {//Falta añadir la lista enlazada por parametro y los metodos que devuelvan true si se ha completado de forma correcta y false si no
+    public static void menuMantenimiento(LDEGOrdenada<Autobus> autobuses) {//Falta añadir la lista enlazada por parametro y los metodos que devuelvan true si se ha completado de forma correcta y false si no
 
         boolean salida = false;
         Scanner sc = new Scanner(System.in); //Para escanear los datos por teclado
@@ -280,25 +279,23 @@ public class main {
                                     System.out.println("Introduzca el codigo de viajes");
                                     int codigoViaje = Integer.parseInt(sc2.nextLine());
 
-                                    System.out.println("Introduzca el codigo de viajes");
+                                    System.out.println("Introduzca el origen del viaje");
                                     String origen = sc2.nextLine();
 
-                                    System.out.println("Introduzca el codigo de viajes");
+                                    System.out.println("Introduzca el destino del viaje");
                                     String destino = sc2.nextLine();
 
-                                    System.out.println("Introduzca el codigo de viajes");
+                                    System.out.println("Introduzca la hora del viaje");
                                     String hora = sc2.nextLine();
 
-                                    Viaje viaje = autobus.getViajes().existeElemento(new Viaje(codigoViaje,origen,destino,hora));
-
-
-                                    if (viaje != null){
-                                        autobuses.borrarElemento(autobus);
-                                        System.out.println("Baja realizada");
-                                        salidaBajaAutobus = true;
+                                    if (origen.equals(destino)){
+                                        System.out.println("El origen y el destino no pueden ser iguales");
                                     }
-                                    else {
-                                        System.out.println("Proceso de baja abortado");
+                                    else{
+                                        Viaje viaje = new Viaje(codigoViaje,origen,destino,hora);
+
+                                        autobus.registrarViaje(viaje);
+                                        salidaAltaViajes = true;
                                     }
                                 }
                                 else{
@@ -309,8 +306,97 @@ public class main {
 
                         break;
                     case 5: //Baja viaje
+
+                        boolean salidaBajaViajes = false;
+
+                        do {
+                            try{
+                                System.out.println("Introduce una matricula");
+                                String matricula = sc2.nextLine();
+
+                                Autobus autobus = autobuses.existeElemento(new Autobus(matricula,"",0));
+
+                                if (autobus != null){
+
+                                    System.out.println("Introduzca el codigo de viajes");
+                                    int codigoViaje = Integer.parseInt(sc2.nextLine());
+
+                                    Viaje viaje = autobus.getViajes().existeElemento(new Viaje(codigoViaje,"","",""));
+
+                                    if (viaje != null){
+
+                                        System.out.println("Desea realmente dar de baja este viaje? (S/N)");
+                                        String respuesta = sc2.nextLine().toUpperCase();
+
+                                        viaje.toString();
+
+                                        if (respuesta.equals("S")){
+                                            autobus.bajaViajes(viaje);
+                                            System.out.println("Baja realizada");
+                                            salidaBajaViajes = true;
+                                        }
+                                        else {
+                                            System.out.println("Proceso de baja abortado");
+                                        }
+                                    }
+                                    else{
+                                        System.out.println("No existe un viaje con este codigo");
+                                    }
+                                }
+                                else{
+                                    System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
+                                }
+                            }catch (IllegalArgumentException e){}
+                        }while (salidaBajaViajes);
+
                         break;
                     case 6: //Modificacion viaje
+
+                        boolean salidaModificacionViajes = false;
+
+                        do {
+                            try{
+                                System.out.println("Introduce una matricula");
+                                String matricula = sc2.nextLine();
+
+                                Autobus autobus = autobuses.existeElemento(new Autobus(matricula,"",0));
+
+                                if (autobus != null){
+
+                                    autobus.listarViajes();
+
+                                    System.out.println("Que viaje desea modificar? (introduce el codigo del viaje a modificar)");
+                                    int codigoViaje = Integer.parseInt(sc2.nextLine());
+
+                                    Viaje viaje = autobus.getViajes().existeElemento(new Viaje(codigoViaje,"","",""));
+
+                                    if (viaje != null){
+
+                                        viaje.toString();
+
+                                        System.out.println("Introduzca el origen del viaje");
+                                        String origen = sc2.nextLine();
+
+                                        System.out.println("Introduzca el destino del viaje");
+                                        String destino = sc2.nextLine();
+
+                                        System.out.println("Introduzca la hora del viaje");
+                                        String hora = sc2.nextLine();
+
+                                        autobus.modificarViajes(new Viaje(viaje.getCodigo(),origen,destino,hora));
+
+                                        System.out.println("Autobus "+autobus.getMatricula()+": Viaje "+viaje.getCodigo()+" modificado correctamente");
+                                    }
+                                    else{
+                                        System.out.println("No existe un viaje con este codigo");
+                                    }
+                                }
+                                else{
+                                    System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
+                                }
+                            }catch (IllegalArgumentException e){}
+                        }while (salidaModificacionViajes);
+
                         break;
                     default:
                         System.out.println("Volver al menu principal");

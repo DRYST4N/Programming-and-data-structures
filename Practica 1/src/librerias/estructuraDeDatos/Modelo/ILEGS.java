@@ -9,4 +9,5 @@ public interface ILEGS<E> {
     void borrarElemento(E e);
     void modificarElemento(E e);
     E existeElemento(E e);
+    E getElemento(int i);
 }
