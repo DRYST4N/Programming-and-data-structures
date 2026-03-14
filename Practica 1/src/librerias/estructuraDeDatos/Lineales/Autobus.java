@@ -89,6 +89,17 @@ public class Autobus implements Comparable<Autobus> {
         return ciudad.equals("madrid") || ciudad.equals("segovia") || ciudad.equals("barcelona") || ciudad.equals("sevilla");
     }
 
+    public boolean codigoViajeYaEistente(int codigoViaje) {
+        for (int i = 0; i < this.viajes.talla(); i++){
+            Viaje viajes = this.viajes.getElemento(i);
+
+            if (viajes.codigoViajeSimilar(codigoViaje)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public int compareTo(Autobus autobus) {
         return Integer.compare(this.numeroPlazas, autobus.numeroPlazas);

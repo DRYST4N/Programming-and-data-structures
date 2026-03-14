@@ -280,7 +280,13 @@ public class main {
                                 if (autobus != null){
 
                                     System.out.println("Introduzca el codigo de viajes");
-                                    int codigoViaje = Integer.parseInt(sc.nextLine());
+                                    int codigoViaje;
+
+                                    do {
+                                        System.out.println("Introduzca el codigo de viajes");
+                                        codigoViaje = Integer.parseInt(sc.nextLine());
+
+                                    }while (autobus.codigoViajeYaEistente(codigoViaje));
 
                                     System.out.println("Introduzca el origen del viaje");
                                     String origen = sc.nextLine().toLowerCase();
@@ -291,7 +297,7 @@ public class main {
                                     System.out.println("Introduzca la hora del viaje");
                                     String hora = sc.nextLine();
 
-                                    if (!autobus.ciudadVailida(origen) &&  !autobus.ciudadVailida(destino)){
+                                    if (!autobus.ciudadVailida(origen) ||  !autobus.ciudadVailida(destino)){
                                         throw new IllegalArgumentException("Las ciudades permitidas son: Madrid, Segovia, Barcelona y Sevilla.");
                                     }
 

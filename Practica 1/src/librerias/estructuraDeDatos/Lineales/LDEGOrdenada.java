@@ -29,7 +29,7 @@ public class LDEGOrdenada<E extends Comparable<E>> implements ILEGS<E> {
             aux = aux.getSiguiente();
         }
 
-        if (ant != null) {
+        if (ant == null) {
             this.primero = nuevo;
         }
         else {
@@ -40,7 +40,7 @@ public class LDEGOrdenada<E extends Comparable<E>> implements ILEGS<E> {
         nuevo.setSiguiente(aux);
 
         if (aux != null) {
-            aux.setSiguiente(nuevo);
+            aux.setAnterior(nuevo);
         }
 
         this.talla++;
@@ -53,7 +53,7 @@ public class LDEGOrdenada<E extends Comparable<E>> implements ILEGS<E> {
         while (aux != null) {
             if(aux.getDato().equals(e)){
 
-                if(aux.getAnterior()!=null){
+                if(aux.getAnterior()==null){
                     this.primero=aux.getSiguiente();
                 }
                 else {

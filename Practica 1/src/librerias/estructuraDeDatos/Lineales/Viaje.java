@@ -43,6 +43,10 @@ public class Viaje {
         return this.origen.equals(viaje.getOrigen()) && this.destino.equals(viaje.getDestino()) &&  this.hora.equals(viaje.getHora());
     }
 
+    public boolean codigoViajeSimilar(int codigo){
+        return codigo==this.codigo;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj){
