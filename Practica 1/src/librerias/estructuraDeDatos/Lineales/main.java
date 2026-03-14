@@ -64,7 +64,7 @@ public class main {
                 zonaDeEleccion();
 
                 int opcion = Integer.parseInt(sc.nextLine());
-                Validaciones.numeroEntero(opcion, 3);
+                Validaciones.validarOpcionesMenu(opcion, 3);
 
                 switch (opcion) {
                     case 1:
@@ -97,7 +97,7 @@ public class main {
                 zonaDeEleccion();
 
                 int eleccion = Integer.parseInt(sc.nextLine());
-                Validaciones.numeroEntero(eleccion,10);
+                Validaciones.validarOpcionesMenu(eleccion,10);
 
                 switch (eleccion) {
                     case 1:
@@ -157,7 +157,7 @@ public class main {
                 zonaDeEleccion();
 
                 int eleccion = Integer.parseInt(sc.nextLine());//Escaneamos y guardamos la eleccion para usarla
-                Validaciones.numeroEntero(eleccion,7);
+                Validaciones.validarOpcionesMenu(eleccion,7);
 
                 switch (eleccion) {
                     case 1: //Alta autobus
@@ -280,33 +280,26 @@ public class main {
                                 if (autobus != null){
 
                                     System.out.println("Introduzca el codigo de viajes");
-                                    int codigoViaje;
+                                    int codigoViaje  = Integer.parseInt(sc.nextLine());
 
-                                    do {
-                                        System.out.println("Introduzca el codigo de viajes");
-                                        codigoViaje = Integer.parseInt(sc.nextLine());
-
-                                    }while (autobus.codigoViajeYaEistente(codigoViaje));
-
-                                    System.out.println("Introduzca el origen del viaje");
-                                    String origen = sc.nextLine().toLowerCase();
-
-                                    System.out.println("Introduzca el destino del viaje");
-                                    String destino = sc.nextLine().toLowerCase();
-
-                                    System.out.println("Introduzca la hora del viaje");
-                                    String hora = sc.nextLine();
-
-                                    if (!autobus.ciudadVailida(origen) ||  !autobus.ciudadVailida(destino)){
-                                        throw new IllegalArgumentException("Las ciudades permitidas son: Madrid, Segovia, Barcelona y Sevilla.");
+                                    if (existeCodigoViaje(codigoViaje,autobuses)){
+                                        System.out.println("Ya existe un viaje con este codigo");
                                     }
+                                    else {
+                                        System.out.println("Introduzca el origen del viaje");
+                                        String origen = sc.nextLine().toLowerCase();
 
-                                    if (origen.equals(destino)){
-                                        System.out.println("El origen y el destino no pueden ser iguales");
-                                    }
-                                    else{
+                                        System.out.println("Introduzca el destino del viaje");
+                                        String destino = sc.nextLine().toLowerCase();
+
+                                        System.out.println("Introduzca la hora del viaje");
+                                        String hora = sc.nextLine();
+
+                                        if (!autobus.ciudadVailida(origen) ||  !autobus.ciudadVailida(destino)){
+                                            throw new IllegalArgumentException("Las ciudades permitidas son: Madrid, Segovia, Barcelona y Sevilla.");
+                                        }
+
                                         Viaje viaje = new Viaje(codigoViaje,origen,destino,hora);
-
                                         autobus.registrarViaje(viaje);
                                         salidaAltaViajes = true;
                                     }
@@ -400,7 +393,7 @@ public class main {
                                         System.out.println("Introduzca la hora del viaje");
                                         String hora = sc.nextLine();
 
-                                        if (!autobus.ciudadVailida(origen) &&  !autobus.ciudadVailida(destino)){
+                                        if (!autobus.ciudadVailida(origen) ||  !autobus.ciudadVailida(destino)){
                                             throw new IllegalArgumentException("Las ciudades permitidas son: Madrid, Segovia, Barcelona y Sevilla.");
                                         }
 
@@ -439,4 +432,15 @@ public class main {
         System.out.println("\n\tMatricula\tAño Compra\tPlazas\n");
     }
     public static void zonaDeEleccion(){System.out.print("\nSelecione una opcion:");}
+
+    public static boolean existeCodigoViaje(int codigoViaje, LDEGOrdenada<Autobus>autobuses){
+        for (int i = 0; i < autobuses.talla(); i++){
+            Autobus autobus = autobuses.getElemento(i);
+
+            if (autobus.getViajes().existeElemento(new Viaje(codigoViaje,"","","")) != null){
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -1,15 +1,21 @@
 package librerias.excepcionesDeUsuario;
 
+import java.util.Scanner;
+
 public class Validaciones {
 
     public class Validaciones1{}
 
-    public static int numeroEntero(int numero,int total) throws IllegalArgumentException{
-        for (int i = 0; i < total;i++){
-            if(numero == i){
-                return numero;
-            }
+    public static void validarOpcionesMenu(int numero,int total) throws IllegalArgumentException{
+
+        if(numero < 0 || numero > total){
+            throw new IllegalArgumentException("El numero debe estar dentro de rango");
         }
-        throw new IllegalArgumentException("Introduce un numero entero");
+    }
+
+    public static void validarNumeroNoNegativo(int numero) throws IllegalArgumentException{
+        if(numero < 0){
+            throw new IllegalArgumentException("El numero debe ser positivo");
+        }
     }
 }

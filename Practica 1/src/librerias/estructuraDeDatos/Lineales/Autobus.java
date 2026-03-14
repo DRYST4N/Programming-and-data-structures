@@ -1,5 +1,7 @@
 package librerias.estructuraDeDatos.Lineales;
 
+import  librerias.excepcionesDeUsuario.ReglasImpuestasException;
+
 public class Autobus implements Comparable<Autobus> {
     private String matricula;
     private String annoCompra;
@@ -43,6 +45,9 @@ public class Autobus implements Comparable<Autobus> {
 
     public void registrarViaje(Viaje viaje) {
 
+        if (viaje.getOrigen().equals(viaje.getDestino())){
+            throw new ReglasImpuestasException("Las ciudades de origen y destino son iguales.");
+        }
         if (this.viajes.existeElemento(viaje) != null) {
             throw new IllegalArgumentException("Ya existe un viaje registrado con este codigo.");
         }
@@ -50,8 +55,8 @@ public class Autobus implements Comparable<Autobus> {
         for (int i = 0; i < this.viajes.talla(); i++){
             Viaje viajes = this.viajes.getElemento(i);
 
-            if (viajes.viajeSimilar(viaje)){
-                throw new IllegalArgumentException("Ya existe un viaje similar");
+            if (viajes.getHora().equals(viaje.getHora())){
+                throw new IllegalArgumentException("El autobus ya tiene un viaje asignado a esta hora");
             }
         }
 
@@ -71,8 +76,8 @@ public class Autobus implements Comparable<Autobus> {
         for (int i = 0; i < this.viajes.talla(); i++){
             Viaje viajes = this.viajes.getElemento(i);
 
-            if (viajes.getCodigo() !=  viaje.getCodigo() && viajes.viajeSimilar(viaje)){
-                throw new IllegalArgumentException("El autobus ya realiza otro viaje similar");
+            if (viajes.getCodigo() !=  viaje.getCodigo() && viajes.getHora().equals(viaje.getHora())){
+                throw new IllegalArgumentException("El autobus ya realiza otro viaje a esta hora");
             }
         }
 
