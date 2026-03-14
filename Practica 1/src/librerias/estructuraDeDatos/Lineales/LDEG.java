@@ -42,30 +42,47 @@ public class LDEG<E extends Comparable<E>> implements ILEGS<E> {
     public void borrarElemento(E e) {
         NodoLDEG<E> ant = null;
         NodoLDEG<E> aux = this.primero;
-        NodoLDEG<E> enc = null;
 
-        /*while (aux!=null && !aux.getDato().equals(e)){
-            if (aux.getDato().equals()) {}
+        if(aux==null){
+            return;
+        }
+
+        while (aux != null) {
+            if(aux.getDato().equals(e)){
+                aux.getAnterior().setSiguiente(aux.getSiguiente());
+                aux.getSiguiente().setAnterior(ant);
+
+                this.talla--;
+                return;
+            }
             ant = aux;
             aux = aux.getSiguiente();
-        }*/
+        }
     }
 
     @Override
-    public void modificarElemento(E e) {
+    public void modificarElemento(E e) { //Este borra e inserta ya que al cambiar datos puede modificar las listas ordenadas
+        NodoLDEG<E> aux = this.primero;
 
+        while (aux != null) {
+            if(aux.getDato().equals(e)){
+               borrarElemento(e);
+               insertarElemento(e);
+            }
+            aux = aux.getSiguiente();
+        }
     }
 
     @Override
-    public boolean existeElemento(E e) {
+    public E existeElemento(E e) {
         NodoLDEG<E> aux = this.primero;
 
         while (aux!=null) {
             if (aux.getDato().equals(e)) {
-                return true;
+                return aux.getDato();
             }
             aux = aux.getSiguiente();
         }
-        return false;
+        return null;
     }
 }

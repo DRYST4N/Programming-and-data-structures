@@ -2,7 +2,7 @@ package librerias.estructuraDeDatos.Lineales;
 
 import librerias.estructuraDeDatos.Modelo.ILEGS;
 
-public class LEG<E> implements ILEGS {
+public class LEG<E> implements ILEGS<E> {
 
     private NodoLEG<E> primero;
     private int talla;
@@ -18,23 +18,60 @@ public class LEG<E> implements ILEGS {
     }
 
     @Override
-    public void insertarElemento(Object o) {
+    public void insertarElemento(E e) {
+        NodoLEG<E> nuevo = new NodoLEG<E>(e);
+        NodoLEG<E> aux = this.primero;
+
+        if (aux==null) {
+            this.primero = nuevo;
+        }
+        else{
+            while (aux.getSiguiente() != null) {
+                aux = aux.getSiguiente();
+            }
+            aux.setSiguiente(nuevo);
+            nuevo.setSiguiente(aux.getSiguiente());
+        }
+        this.talla++;
+    }
+
+    @Override
+    public void borrarElemento(E e) {
+        NodoLEG<E> aux = this.primero;
+        NodoLEG<E> ant = null;
+
+        while (aux!=null) {
+            if (aux.getDato().equals(e)) {
+                if (ant==null) {
+                    this.primero = aux.getSiguiente();
+                }
+                else {
+                    ant.setSiguiente(aux);
+                }
+
+                this.talla--;
+            }
+            ant = aux;
+            aux = aux.getSiguiente();
+        }
+    }
+
+    @Override
+    public void modificarElemento(E e) {
 
     }
 
     @Override
-    public void borrarElemento(Object o) {
+    public E existeElemento(E e) {
+        NodoLEG<E> aux = this.primero;
 
-    }
-
-    @Override
-    public void modificarElemento(Object o) {
-
-    }
-
-    @Override
-    public boolean existeElemento(Object o) {
-        return false;
+        while (aux!=null) {
+            if (aux.getDato().equals(e)) {
+                return aux.getDato();
+            }
+            aux = aux.getSiguiente();
+        }
+        return null;
     }
 
 }

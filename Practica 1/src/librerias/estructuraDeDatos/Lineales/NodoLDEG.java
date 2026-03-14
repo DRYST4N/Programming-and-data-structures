@@ -19,23 +19,19 @@ public class NodoLDEG<E> {
     public E getDato() {
         return dato;
     }
-
-    public void setDato(E dato) {
-        this.dato = dato;
-    }
-
     public NodoLDEG<E> getAnterior() {
         return anterior;
     }
-
-    public void setAnterior(NodoLDEG<E> anterior) {
-        this.anterior = anterior;
-    }
-
     public NodoLDEG<E> getSiguiente() {
         return siguiente;
     }
 
+    public void setDato(E dato) {
+        this.dato = dato;
+    }
+    public void setAnterior(NodoLDEG<E> anterior) {
+        this.anterior = anterior;
+    }
     public void setSiguiente(NodoLDEG<E> siguiente) {
         this.siguiente = siguiente;
     }

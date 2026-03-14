@@ -29,9 +29,6 @@ public class Viaje {
 
     //Setters
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
     public void setOrigen(String origen) {
         this.origen = origen;
     }
@@ -40,5 +37,25 @@ public class Viaje {
     }
     public void setHora(String hora) {
         this.hora = hora;
+    }
+
+    public boolean viajeSimilar(Viaje viaje){
+        return this.origen.equals(viaje.getOrigen()) && this.destino.equals(viaje.getDestino());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj){
+            return true;
+        }
+        if (obj == null){
+            return false;
+        }
+        if (getClass() != obj.getClass()){
+            return false;
+        }
+        Viaje viaje = (Viaje) obj;
+
+        return this.codigo == viaje.codigo;
     }
 }

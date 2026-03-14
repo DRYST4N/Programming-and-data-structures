@@ -8,5 +8,5 @@ public interface ILEGS<E> {
     void insertarElemento(E e);
     void borrarElemento(E e);
     void modificarElemento(E e);
-    boolean existeElemento(E e);
+    E existeElemento(E e);
 }
