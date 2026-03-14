@@ -7,14 +7,10 @@ import librerias.excepcionesDeUsuario.Validaciones;
 
 public class main {
 
-    static Scanner sc = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in); //Se ha dejado un scanner por si se ralla el prama
 
     public static void main(String [] args){
-        try{
-            menuPrincipal();
-        }catch (Exception e){
-            System.out.println("Error en el programa: "+e.getMessage());
-        }
+        menuPrincipal();
     }
 
     public static void opcionesMenuPrincipal(){
@@ -80,10 +76,10 @@ public class main {
                         salida = true;
                         break;
                 }
-            }catch (NumberFormatException e){
-                System.out.println("Introduce un numero entero");
-            }catch (IllegalArgumentException e){
-                System.out.println("Introduce un numero valido");
+            }catch(NumberFormatException e) {
+                System.out.println("Error: Debe seleccionar un numero");
+            }catch(IllegalArgumentException e){
+                System.out.println("Error validacion: " + e.getMessage());
             }
         }while (!salida);
     }
@@ -192,7 +188,7 @@ public class main {
                                     }
                                 }
                             }catch (NumberFormatException e) {
-                                System.out.println("Error: Debe ser un numero");
+                                System.out.println("Error: Debe seleccionar un numero");
                             }catch (ReglasImpuestasException e) {
                                 System.out.println("Error: Regla no cumplida: "+e.getMessage());
                             }catch(IllegalArgumentException e){
@@ -230,11 +226,11 @@ public class main {
                                 else{
                                     System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
                                 }
-                            }catch (NumberFormatException e) {
-                                System.out.println("Error: Debe ser un numero");
-                            }catch (ReglasImpuestasException e) {
+                            }catch (NumberFormatException e) { //Comprueba Integer.parseInt
+                                System.out.println("Error: Debe seleccionar un numero");
+                            }catch (ReglasImpuestasException e) { //Comprueba la excepcion creada
                                 System.out.println("Error: Regla no cumplida: "+e.getMessage());
-                            }catch(IllegalArgumentException e){
+                            }catch(IllegalArgumentException e){ //Comprueba las validaciones
                                 System.out.println("Error validacion: " + e.getMessage());
                             }
                         }while (!salidaBajaAutobus);
@@ -274,7 +270,7 @@ public class main {
                                     System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
                                 }
                             }catch (NumberFormatException e) {
-                                System.out.println("Error: Debe ser un numero");
+                                System.out.println("Error: Debe seleccionar un numero");
                             }catch (ReglasImpuestasException e) {
                                 System.out.println("Error: Regla no cumplida: "+e.getMessage());
                             }catch(IllegalArgumentException e){
@@ -327,7 +323,7 @@ public class main {
                                     System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
                                 }
                             }catch (NumberFormatException e) {
-                                System.out.println("Error: Debe ser un numero");
+                                System.out.println("Error: Debe seleccionar un numero");
                             }catch (ReglasImpuestasException e) {
                                 System.out.println("Error: Regla no cumplida: "+e.getMessage());
                             }catch(IllegalArgumentException e){
@@ -378,7 +374,7 @@ public class main {
                                     System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
                                 }
                             }catch (NumberFormatException e) {
-                                System.out.println("Error: Debe ser un numero");
+                                System.out.println("Error: Debe seleccionar un numero");
                             }catch (ReglasImpuestasException e) {
                                 System.out.println("Error: Regla no cumplida: "+e.getMessage());
                             }catch(IllegalArgumentException e){
@@ -436,7 +432,7 @@ public class main {
                                     System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
                                 }
                             }catch (NumberFormatException e) {
-                                System.out.println("Error: Debe ser un numero");
+                                System.out.println("Error: Debe seleccionar un numero");
                             }catch (ReglasImpuestasException e) {
                                 System.out.println("Error: Regla no cumplida: "+e.getMessage());
                             }catch(IllegalArgumentException e){
