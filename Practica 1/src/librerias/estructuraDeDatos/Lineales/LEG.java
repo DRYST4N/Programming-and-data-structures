@@ -30,7 +30,6 @@ public class LEG<E> implements ILEGS<E> {
                 aux = aux.getSiguiente();
             }
             aux.setSiguiente(nuevo);
-            nuevo.setSiguiente(aux.getSiguiente());
         }
         this.talla++;
     }
@@ -46,10 +45,10 @@ public class LEG<E> implements ILEGS<E> {
                     this.primero = aux.getSiguiente();
                 }
                 else {
-                    ant.setSiguiente(aux);
+                    ant.setSiguiente(aux.getSiguiente());
                 }
-
                 this.talla--;
+                return;
             }
             ant = aux;
             aux = aux.getSiguiente();

@@ -42,42 +42,51 @@ public class Autobus implements Comparable<Autobus> {
     public void setViajes(LEG<Viaje> viajes) { this.viajes = viajes; }
 
     public void registrarViaje(Viaje viaje) {
+
+        if (this.viajes.existeElemento(viaje) != null) {
+            throw new IllegalArgumentException("Ya existe un viaje registrado con este codigo.");
+        }
+
         for (int i = 0; i < this.viajes.talla(); i++){
             Viaje viajes = this.viajes.getElemento(i);
 
-            if (!viajes.viajeSimilar(viaje)){
-                this.viajes.insertarElemento(viajes);
-            }
-            else {
-                System.out.println("Ya existe un viaje similar");
+            if (viajes.viajeSimilar(viaje)){
+                throw new IllegalArgumentException("Ya existe un viaje similar");
             }
         }
+
+        this.viajes.insertarElemento(viaje);
     }
 
     public void bajaViajes(Viaje viaje) {
-        for (int i = 0; i < this.viajes.talla(); i++){
-            Viaje viajes = this.viajes.getElemento(i);
-
-            if (viajes.equals(viaje)){
-                this.viajes.borrarElemento(viajes);
-            }
-        }
+        this.viajes.borrarElemento(viaje);
     }
 
     public void modificarViajes(Viaje viaje) {
+
+        if (viaje.getOrigen().equals(viaje.getDestino())){
+            throw new IllegalArgumentException("Las ciudade de origen y destino son iguales.");
+        }
+
         for (int i = 0; i < this.viajes.talla(); i++){
             Viaje viajes = this.viajes.getElemento(i);
 
-            if (viajes.equals(viaje)){
-                this.viajes.modificarElemento(viajes);
+            if (viajes.getCodigo() !=  viaje.getCodigo() && viajes.viajeSimilar(viaje)){
+                throw new IllegalArgumentException("El autobus ya realiza otro viaje similar");
             }
         }
+
+        this.viajes.modificarElemento(viaje);
     }
 
     public void listarViajes() {
         for (int i = 0; i < this.viajes.talla(); i++){
             System.out.println(this.viajes.getElemento(i).toString());
         }
+    }
+
+    public boolean ciudadVailida(String ciudad) {
+        return ciudad.equals("madrid") || ciudad.equals("segovia") || ciudad.equals("barcelona") || ciudad.equals("sevilla");
     }
 
     @Override

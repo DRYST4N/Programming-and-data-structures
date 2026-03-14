@@ -30,47 +30,55 @@ public class LDEGOrdenada<E extends Comparable<E>> implements ILEGS<E> {
         }
 
         if (ant != null) {
+            this.primero = nuevo;
+        }
+        else {
             ant.setSiguiente(nuevo);
         }
+
         nuevo.setAnterior(ant);
         nuevo.setSiguiente(aux);
+
+        if (aux != null) {
+            aux.setSiguiente(nuevo);
+        }
 
         this.talla++;
     }
 
     @Override
     public void borrarElemento(E e) {
-        NodoLDEG<E> ant = null;
         NodoLDEG<E> aux = this.primero;
-
-        if(aux==null){
-            return;
-        }
 
         while (aux != null) {
             if(aux.getDato().equals(e)){
-                aux.getAnterior().setSiguiente(aux.getSiguiente());
-                aux.getSiguiente().setAnterior(ant);
+
+                if(aux.getAnterior()!=null){
+                    this.primero=aux.getSiguiente();
+                }
+                else {
+                    aux.getAnterior().setSiguiente(aux.getSiguiente());
+                }
+
+                if(aux.getSiguiente()!=null){
+                    aux.getSiguiente().setAnterior(aux.getAnterior());
+                }
 
                 this.talla--;
                 return;
             }
-            ant = aux;
             aux = aux.getSiguiente();
         }
     }
 
     @Override
     public void modificarElemento(E e) { //Este borra e inserta ya que al cambiar datos puede modificar las listas ordenadas
-        NodoLDEG<E> aux = this.primero;
 
-        while (aux != null) {
-            if(aux.getDato().equals(e)){
-               borrarElemento(e);
-               insertarElemento(e);
-            }
-            aux = aux.getSiguiente();
+        if (existeElemento(e) != null) {
+            borrarElemento(e);
+            insertarElemento(e);
         }
+
     }
 
     @Override
@@ -88,6 +96,16 @@ public class LDEGOrdenada<E extends Comparable<E>> implements ILEGS<E> {
 
     @Override
     public E getElemento(int i) {
-        return null;
+        NodoLDEG<E> aux = this.primero;
+        int  contador = 0;
+
+        while (aux!=null) {
+            if (contador==i) {
+                return aux.getDato();
+            }
+            aux = aux.getSiguiente();
+            contador++;
+        }
+        return  null;
     }
 }
