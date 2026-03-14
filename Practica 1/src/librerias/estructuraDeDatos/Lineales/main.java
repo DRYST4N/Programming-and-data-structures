@@ -1,6 +1,8 @@
 package librerias.estructuraDeDatos.Lineales;
 
 import java.util.Scanner;
+
+import librerias.excepcionesDeUsuario.ReglasImpuestasException;
 import librerias.excepcionesDeUsuario.Validaciones;
 
 public class main {
@@ -165,31 +167,36 @@ public class main {
                         boolean salidaAltaAutobus = false;
 
                         do {
-                            try{
+                            try {
                                 System.out.println("Introduce una matricula");
                                 String matricula = sc.nextLine();
 
-                                if (autobuses.existeElemento(new Autobus(matricula,"",0)) != null){
+                                if (autobuses.existeElemento(new Autobus(matricula, "", 0)) != null) {
                                     System.out.println("Error: ya existe un autobus registrado con esa matricula");
-                                }
-                                else{
+                                } else {
                                     System.out.println("Introduce el año de compra");
                                     String annoCompra = sc.nextLine();
 
-                                    System.out.println("Introduce numero de plazad");
+                                    System.out.println("Introduce numero de plazas");
                                     int plazas = Integer.parseInt(sc.nextLine());
 
-                                    autobuses.insertarElemento(new Autobus(matricula,annoCompra,plazas));
+                                    Validaciones.validarNumeroNoNegativo(plazas);
+
+                                    autobuses.insertarElemento(new Autobus(matricula, annoCompra, plazas));
 
                                     System.out.println("Desea añadir un nuevo autobus? (S/N)");
                                     String respuesta = sc.nextLine().toUpperCase();
 
-                                    if (!respuesta.equals("S")){
+                                    if (!respuesta.equals("S")) {
                                         salidaAltaAutobus = true;
                                     }
                                 }
-                            }catch (IllegalArgumentException e){
-                                System.out.println("Error: "+e.getMessage());
+                            }catch (NumberFormatException e) {
+                                System.out.println("Error: Debe ser un numero");
+                            }catch (ReglasImpuestasException e) {
+                                System.out.println("Error: Regla no cumplida: "+e.getMessage());
+                            }catch(IllegalArgumentException e){
+                                System.out.println("Error validacion: " + e.getMessage());
                             }
                         }while (!salidaAltaAutobus);
 
@@ -223,8 +230,12 @@ public class main {
                                 else{
                                     System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
                                 }
-                            }catch (IllegalArgumentException e){
-                                System.out.println("Error: "+e.getMessage());
+                            }catch (NumberFormatException e) {
+                                System.out.println("Error: Debe ser un numero");
+                            }catch (ReglasImpuestasException e) {
+                                System.out.println("Error: Regla no cumplida: "+e.getMessage());
+                            }catch(IllegalArgumentException e){
+                                System.out.println("Error validacion: " + e.getMessage());
                             }
                         }while (!salidaBajaAutobus);
 
@@ -248,6 +259,8 @@ public class main {
                                     System.out.println("Introduce numero de plazas");
                                     int plazas = Integer.parseInt(sc.nextLine());
 
+                                    Validaciones.validarNumeroNoNegativo(plazas);
+
                                     autobuses.modificarElemento(new Autobus(autobus.getMatricula(),annoModificacion,plazas,autobus.getViajes()));
 
                                     System.out.println("Desea modificar los datos de otro autobus? (S/N)");
@@ -260,8 +273,12 @@ public class main {
                                 else{
                                     System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
                                 }
-                            }catch (IllegalArgumentException e){
-                                System.out.println("Error: "+e.getMessage());
+                            }catch (NumberFormatException e) {
+                                System.out.println("Error: Debe ser un numero");
+                            }catch (ReglasImpuestasException e) {
+                                System.out.println("Error: Regla no cumplida: "+e.getMessage());
+                            }catch(IllegalArgumentException e){
+                                System.out.println("Error validacion: " + e.getMessage());
                             }
                         }while (!salidaModificacionAutobus);
 
@@ -282,6 +299,8 @@ public class main {
                                     System.out.println("Introduzca el codigo de viajes");
                                     int codigoViaje  = Integer.parseInt(sc.nextLine());
 
+                                    Validaciones.validarNumeroNoNegativo(codigoViaje);
+
                                     if (existeCodigoViaje(codigoViaje,autobuses)){
                                         System.out.println("Ya existe un viaje con este codigo");
                                     }
@@ -296,7 +315,7 @@ public class main {
                                         String hora = sc.nextLine();
 
                                         if (!autobus.ciudadVailida(origen) ||  !autobus.ciudadVailida(destino)){
-                                            throw new IllegalArgumentException("Las ciudades permitidas son: Madrid, Segovia, Barcelona y Sevilla.");
+                                            throw new ReglasImpuestasException("Las ciudades permitidas son: Madrid, Segovia, Barcelona y Sevilla.");
                                         }
 
                                         Viaje viaje = new Viaje(codigoViaje,origen,destino,hora);
@@ -307,8 +326,12 @@ public class main {
                                 else{
                                     System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
                                 }
-                            }catch (IllegalArgumentException e){
-                                System.out.println("Error: "+e.getMessage());
+                            }catch (NumberFormatException e) {
+                                System.out.println("Error: Debe ser un numero");
+                            }catch (ReglasImpuestasException e) {
+                                System.out.println("Error: Regla no cumplida: "+e.getMessage());
+                            }catch(IllegalArgumentException e){
+                                System.out.println("Error validacion: " + e.getMessage());
                             }
                         }while (!salidaAltaViajes);
 
@@ -354,8 +377,12 @@ public class main {
                                 else{
                                     System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
                                 }
-                            }catch (IllegalArgumentException e){
-                                System.out.println("Error: "+e.getMessage());
+                            }catch (NumberFormatException e) {
+                                System.out.println("Error: Debe ser un numero");
+                            }catch (ReglasImpuestasException e) {
+                                System.out.println("Error: Regla no cumplida: "+e.getMessage());
+                            }catch(IllegalArgumentException e){
+                                System.out.println("Error validacion: " + e.getMessage());
                             }
                         }while (!salidaBajaViajes);
 
@@ -394,7 +421,7 @@ public class main {
                                         String hora = sc.nextLine();
 
                                         if (!autobus.ciudadVailida(origen) ||  !autobus.ciudadVailida(destino)){
-                                            throw new IllegalArgumentException("Las ciudades permitidas son: Madrid, Segovia, Barcelona y Sevilla.");
+                                            throw new ReglasImpuestasException("Las ciudades permitidas son: Madrid, Segovia, Barcelona y Sevilla.");
                                         }
 
                                         autobus.modificarViajes(new Viaje(codigoViaje,origen,destino,hora));
@@ -409,9 +436,11 @@ public class main {
                                     System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
                                 }
                             }catch (NumberFormatException e) {
-                                System.out.println("Error: El codigo debe ser numérico.");
-                            }catch (IllegalArgumentException e){
-                                System.out.println("Error: "+e.getMessage());
+                                System.out.println("Error: Debe ser un numero");
+                            }catch (ReglasImpuestasException e) {
+                                System.out.println("Error: Regla no cumplida: "+e.getMessage());
+                            }catch(IllegalArgumentException e){
+                                System.out.println("Error validacion: " + e.getMessage());
                             }
                         }while (!salidaModificacionViajes);
 

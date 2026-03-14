@@ -49,14 +49,14 @@ public class Autobus implements Comparable<Autobus> {
             throw new ReglasImpuestasException("Las ciudades de origen y destino son iguales.");
         }
         if (this.viajes.existeElemento(viaje) != null) {
-            throw new IllegalArgumentException("Ya existe un viaje registrado con este codigo.");
+            throw new ReglasImpuestasException("Ya existe un viaje registrado con este codigo.");
         }
 
         for (int i = 0; i < this.viajes.talla(); i++){
             Viaje viajes = this.viajes.getElemento(i);
 
             if (viajes.getHora().equals(viaje.getHora())){
-                throw new IllegalArgumentException("El autobus ya tiene un viaje asignado a esta hora");
+                throw new ReglasImpuestasException("El autobus ya tiene un viaje asignado a esta hora");
             }
         }
 
@@ -70,14 +70,14 @@ public class Autobus implements Comparable<Autobus> {
     public void modificarViajes(Viaje viaje) {
 
         if (viaje.getOrigen().equals(viaje.getDestino())){
-            throw new IllegalArgumentException("Las ciudade de origen y destino son iguales.");
+            throw new ReglasImpuestasException("Las ciudade de origen y destino son iguales.");
         }
 
         for (int i = 0; i < this.viajes.talla(); i++){
             Viaje viajes = this.viajes.getElemento(i);
 
             if (viajes.getCodigo() !=  viaje.getCodigo() && viajes.getHora().equals(viaje.getHora())){
-                throw new IllegalArgumentException("El autobus ya realiza otro viaje a esta hora");
+                throw new ReglasImpuestasException("El autobus ya realiza otro viaje a esta hora");
             }
         }
 
