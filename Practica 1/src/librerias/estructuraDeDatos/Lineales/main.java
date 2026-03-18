@@ -64,6 +64,8 @@ public class main {
                 int opcion = Integer.parseInt(sc.nextLine());
                 Validaciones.validarOpcionesMenu(opcion, 3);
 
+                creacionAutomatica(autobuses);
+
                 switch (opcion) {
                     case 1:
                         menuMantenimiento(autobuses);
@@ -100,39 +102,31 @@ public class main {
                 switch (eleccion) {
                     case 1:
                         System.out.println("Listado general de autobuses ordenado por numero de plazas".toUpperCase()+" (orden ascendente)");
-                        elementosLista();
                         break;
                     case 2:
                         System.out.println("Listado general de autobuses ordenado por numero de plazas".toUpperCase()+" (orden descendente)");
-                        elementosLista();
                         break;
                     case 3:
                         System.out.println("Listado general de viajes".toUpperCase());
-                        elementosLista();
+                        Listados.listarGeneralViajes(autobuses);
                         break;
                     case 4:
                         System.out.println("Listado de viajes que parten de una ciudad determinada".toUpperCase());
-                        elementosLista();
                         break;
                     case 5:
                         System.out.println("Listado de viajes que llegan a una ciudad determinada".toUpperCase());
-                        elementosLista();
                         break;
                     case 6:
                         System.out.println("Listado de autobuses que tienen una capacidad mayor o igual a la indicada por el usuario".toUpperCase());
-                        elementosLista();
                         break;
                     case 7:
                         System.out.println("Listado de autobus o autobuses que realizan la mayor cantidad de viajes".toUpperCase());
-                        elementosLista();
                         break;
                     case 8:
                         System.out.println("Cantidad total de viajes que realizan los autobuses de la empresa".toUpperCase());
-                        elementosLista();
                         break;
                     case 9:
                         System.out.println("Cantidad total de pasajeros que viajan de una ciudad a otra".toUpperCase());
-                        elementosLista();
                         break;
                     default:
                         System.out.println("Volver al menu principal");
@@ -364,6 +358,7 @@ public class main {
                                         }
                                         else {
                                             System.out.println("Proceso de baja abortado");
+                                            salidaBajaViajes = true;
                                         }
                                     }
                                     else{
@@ -453,9 +448,7 @@ public class main {
 
     }
 
-    public static void elementosLista(){
-        System.out.println("\n\tMatricula\tAño Compra\tPlazas\n");
-    }
+
     public static void zonaDeEleccion(){System.out.print("\nSelecione una opcion:");}
 
     public static boolean existeCodigoViaje(int codigoViaje, LDEGOrdenada<Autobus>autobuses){
@@ -467,5 +460,24 @@ public class main {
             }
         }
         return false;
+    }
+
+    public static void creacionAutomatica(LDEGOrdenada<Autobus> autobuses){
+
+        Autobus autobus1 = new Autobus("345HBG", "2030", 34);
+        Autobus autobus2 = new Autobus("654KAJ", "2070", 24);
+        Autobus autobus3 = new Autobus("826ÑPL", "2043", 14);
+
+        autobuses.insertarElemento(autobus1);
+        autobuses.insertarElemento(autobus2);
+        autobuses.insertarElemento(autobus3);
+
+        Viaje viaje1 = new Viaje(123456,"madrid","barcelona","20:00");
+        Viaje viaje2 = new Viaje(654321,"barcelona","madrid","10:45");
+        Viaje viaje3 = new Viaje(678905,"segovia","madrid","12:15");
+
+        autobus1.registrarViaje(viaje1);
+        autobus1.registrarViaje(viaje2);
+        autobus2.registrarViaje(viaje3);
     }
 }
