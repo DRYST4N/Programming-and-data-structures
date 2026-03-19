@@ -55,16 +55,17 @@ public class main {
         boolean salida = false;
 
         LDEGOrdenada<Autobus> autobuses = new LDEGOrdenada<Autobus>();
+        creacionAutomatica(autobuses);
 
         do {
             try {
                 opcionesMenuPrincipal();
                 zonaDeEleccion();
 
-                int opcion = Integer.parseInt(sc.nextLine());
+                int opcion = Integer.parseInt(sc.nextLine().trim());
                 Validaciones.validarOpcionesMenu(opcion, 3);
 
-                creacionAutomatica(autobuses);
+
 
                 switch (opcion) {
                     case 1:
@@ -96,7 +97,7 @@ public class main {
                 opcionesMenuListado();
                 zonaDeEleccion();
 
-                int eleccion = Integer.parseInt(sc.nextLine());
+                int eleccion = Integer.parseInt(sc.nextLine().trim());
                 Validaciones.validarOpcionesMenu(eleccion,10);
 
                 switch (eleccion) {
@@ -108,7 +109,7 @@ public class main {
                         break;
                     case 3:
                         System.out.println("Listado general de viajes".toUpperCase());
-                        Listados.listarGeneralViajes(autobuses);
+                        //Listados.listarGeneralViajes(autobuses);
                         break;
                     case 4:
                         System.out.println("Listado de viajes que parten de una ciudad determinada".toUpperCase());
@@ -148,7 +149,7 @@ public class main {
                 opcionesMenuMantenimiento(); //Llamamos a las opciones del menu
                 zonaDeEleccion();
 
-                int eleccion = Integer.parseInt(sc.nextLine());//Escaneamos y guardamos la eleccion para usarla
+                int eleccion = Integer.parseInt(sc.nextLine().trim());//Escaneamos y guardamos la eleccion para usarla
                 Validaciones.validarOpcionesMenu(eleccion,7);
 
                 switch (eleccion) {
@@ -159,23 +160,23 @@ public class main {
                         do {
                             try {
                                 System.out.println("Introduce una matricula");
-                                String matricula = sc.nextLine();
+                                String matricula = sc.nextLine().trim();
 
                                 if (autobuses.existeElemento(new Autobus(matricula, "", 0)) != null) {
                                     System.out.println("Error: ya existe un autobus registrado con esa matricula");
                                 } else {
                                     System.out.println("Introduce el año de compra");
-                                    String annoCompra = sc.nextLine();
+                                    String annoCompra = sc.nextLine().trim();
 
                                     System.out.println("Introduce numero de plazas");
-                                    int plazas = Integer.parseInt(sc.nextLine());
+                                    int plazas = Integer.parseInt(sc.nextLine().trim());
 
                                     Validaciones.validarNumeroNoNegativo(plazas);
 
                                     autobuses.insertarElemento(new Autobus(matricula, annoCompra, plazas));
 
                                     System.out.println("Desea añadir un nuevo autobus? (S/N)");
-                                    String respuesta = sc.nextLine().toUpperCase();
+                                    String respuesta = sc.nextLine().trim().toUpperCase();
 
                                     if (!respuesta.equals("S")) {
                                         salidaAltaAutobus = true;
@@ -198,7 +199,7 @@ public class main {
                         do {
                             try{
                                 System.out.println("Introduce una matricula");
-                                String matricula = sc.nextLine();
+                                String matricula = sc.nextLine().trim();
 
                                 Autobus autobus = autobuses.existeElemento(new Autobus(matricula,"",0));
 
@@ -206,7 +207,7 @@ public class main {
                                     System.out.println(autobus.toString());
 
                                     System.out.println("Desea realmente dar de baja a este autobus? (S/N)");
-                                    String respuesta = sc.nextLine().toUpperCase();
+                                    String respuesta = sc.nextLine().trim().toUpperCase();
 
                                     if (respuesta.equals("S")){
                                         autobuses.borrarElemento(autobus);
@@ -237,24 +238,24 @@ public class main {
                         do {
                             try{
                                 System.out.println("Introduce una matricula");
-                                String matricula = sc.nextLine();
+                                String matricula = sc.nextLine().trim();
 
                                 Autobus autobus = autobuses.existeElemento(new Autobus(matricula,"",0));
 
                                 if (autobus != null){
 
                                     System.out.println("Introduce un año de modificacion");
-                                    String annoModificacion = sc.nextLine();
+                                    String annoModificacion = sc.nextLine().trim();
 
                                     System.out.println("Introduce numero de plazas");
-                                    int plazas = Integer.parseInt(sc.nextLine());
+                                    int plazas = Integer.parseInt(sc.nextLine().trim());
 
                                     Validaciones.validarNumeroNoNegativo(plazas);
 
                                     autobuses.modificarElemento(new Autobus(autobus.getMatricula(),annoModificacion,plazas,autobus.getViajes()));
 
                                     System.out.println("Desea modificar los datos de otro autobus? (S/N)");
-                                    String respuesta = sc.nextLine().toUpperCase();
+                                    String respuesta = sc.nextLine().trim().toUpperCase();
 
                                     if (!respuesta.equals("S")){
                                         salidaModificacionAutobus = true;
@@ -280,14 +281,14 @@ public class main {
                         do {
                             try{
                                 System.out.println("Introduce una matricula");
-                                String matricula = sc.nextLine();
+                                String matricula = sc.nextLine().trim();
 
                                 Autobus autobus = autobuses.existeElemento(new Autobus(matricula,"",0));
 
                                 if (autobus != null){
 
                                     System.out.println("Introduzca el codigo de viajes");
-                                    int codigoViaje  = Integer.parseInt(sc.nextLine());
+                                    int codigoViaje  = Integer.parseInt(sc.nextLine().trim());
 
                                     Validaciones.validarNumeroNoNegativo(codigoViaje);
 
@@ -296,13 +297,13 @@ public class main {
                                     }
                                     else {
                                         System.out.println("Introduzca el origen del viaje");
-                                        String origen = sc.nextLine().toLowerCase();
+                                        String origen = sc.nextLine().trim().toLowerCase();
 
                                         System.out.println("Introduzca el destino del viaje");
-                                        String destino = sc.nextLine().toLowerCase();
+                                        String destino = sc.nextLine().trim().toLowerCase();
 
                                         System.out.println("Introduzca la hora del viaje");
-                                        String hora = sc.nextLine();
+                                        String hora = sc.nextLine().trim();
 
                                         if (!autobus.ciudadVailida(origen) ||  !autobus.ciudadVailida(destino)){
                                             throw new ReglasImpuestasException("Las ciudades permitidas son: Madrid, Segovia, Barcelona y Sevilla.");
@@ -333,23 +334,23 @@ public class main {
                         do {
                             try{
                                 System.out.println("Introduce una matricula");
-                                String matricula = sc.nextLine();
+                                String matricula = sc.nextLine().trim();
 
                                 Autobus autobus = autobuses.existeElemento(new Autobus(matricula,"",0));
 
                                 if (autobus != null){
 
                                     System.out.println("Introduzca el codigo de viajes");
-                                    int codigoViaje = Integer.parseInt(sc.nextLine());
+                                    int codigoViaje = Integer.parseInt(sc.nextLine().trim());
 
                                     Viaje viaje = autobus.getViajes().existeElemento(new Viaje(codigoViaje,"","",""));
 
                                     if (viaje != null){
 
-                                        System.out.println("Desea realmente dar de baja este viaje? (S/N)");
-                                        String respuesta = sc.nextLine().toUpperCase();
-
                                         System.out.println(viaje.toString());
+
+                                        System.out.println("Desea realmente dar de baja este viaje? (S/N)");
+                                        String respuesta = sc.nextLine().trim().toUpperCase();
 
                                         if (respuesta.equals("S")){
                                             autobus.bajaViajes(viaje);
@@ -385,7 +386,7 @@ public class main {
                         do {
                             try{
                                 System.out.println("Introduce una matricula");
-                                String matricula = sc.nextLine();
+                                String matricula = sc.nextLine().trim();
 
                                 Autobus autobus = autobuses.existeElemento(new Autobus(matricula,"",0));
 
@@ -394,7 +395,7 @@ public class main {
                                     autobus.listarViajes();
 
                                     System.out.println("Que viaje desea modificar? (introduce el codigo del viaje a modificar)");
-                                    int codigoViaje = Integer.parseInt(sc.nextLine());
+                                    int codigoViaje = Integer.parseInt(sc.nextLine().trim());
 
                                     Viaje viaje = autobus.getViajes().existeElemento(new Viaje(codigoViaje,"","",""));
 
@@ -403,13 +404,13 @@ public class main {
                                         System.out.println(viaje.toString());
 
                                         System.out.println("Introduzca el origen del viaje");
-                                        String origen = sc.nextLine().toLowerCase();
+                                        String origen = sc.nextLine().trim().toLowerCase();
 
                                         System.out.println("Introduzca el destino del viaje");
-                                        String destino = sc.nextLine().toLowerCase();
+                                        String destino = sc.nextLine().trim().toLowerCase();
 
                                         System.out.println("Introduzca la hora del viaje");
-                                        String hora = sc.nextLine();
+                                        String hora = sc.nextLine().trim();
 
                                         if (!autobus.ciudadVailida(origen) ||  !autobus.ciudadVailida(destino)){
                                             throw new ReglasImpuestasException("Las ciudades permitidas son: Madrid, Segovia, Barcelona y Sevilla.");
@@ -418,6 +419,7 @@ public class main {
                                         autobus.modificarViajes(new Viaje(codigoViaje,origen,destino,hora));
 
                                         System.out.println("Autobus "+autobus.getMatricula()+": Viaje "+viaje.getCodigo()+" modificado correctamente");
+                                        salidaModificacionViajes = true;
                                     }
                                     else{
                                         System.out.println("No existe un viaje con este codigo");
@@ -425,6 +427,11 @@ public class main {
                                 }
                                 else{
                                     System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
+                                }
+                                System.out.println("Desea modificar otro viaje? (S/N)");
+                                String respuesta = sc.nextLine().trim().toUpperCase();
+                                if (!respuesta.equals("S")) {
+                                    salidaModificacionViajes = true;
                                 }
                             }catch (NumberFormatException e) {
                                 System.out.println("Error: Debe seleccionar un numero");
