@@ -5,6 +5,8 @@ import java.util.Scanner;
 import librerias.excepcionesDeUsuario.ReglasImpuestasException;
 import librerias.excepcionesDeUsuario.Validaciones;
 
+import static librerias.estructuraDeDatos.Lineales.Listados.*;
+
 public class main {
 
     static Scanner sc = new Scanner(System.in); //Se ha dejado un scanner por si se ralla el prama
@@ -100,10 +102,10 @@ public class main {
 
                 switch (eleccion) {
                     case 1:
-                        System.out.println("Listado general de autobuses ordenado por numero de plazas".toUpperCase()+" (orden ascendente)");
+                        listarAutobusesPorNumeroPlazaAscendente(autobuses);
                         break;
                     case 2:
-                        System.out.println("Listado general de autobuses ordenado por numero de plazas".toUpperCase()+" (orden descendente)");
+                        listarAutobusesPorNumeroPlazaDescendente(autobuses);
                         break;
                     case 3:
                         System.out.println("Listado general de viajes".toUpperCase());

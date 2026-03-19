@@ -108,4 +108,7 @@ public class LDEGOrdenada<E extends Comparable<E>> implements ILEGS<E> {
         }
         return  null;
     }
+    public NodoLDEG<E> getPrimero() {
+        return this.primero;
+    }
 }
