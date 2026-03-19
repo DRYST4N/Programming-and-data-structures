@@ -172,14 +172,15 @@ public class main {
                                     Validaciones.validarNumeroNoNegativo(plazas);
 
                                     autobuses.insertarElemento(new Autobus(matricula, annoCompra, plazas));
-
-                                    System.out.println("Desea añadir un nuevo autobus? (S/N)");
-                                    String respuesta = sc.nextLine().trim().toUpperCase();
-
-                                    if (!respuesta.equals("S")) {
-                                        salidaAltaAutobus = true;
-                                    }
                                 }
+
+                                System.out.println("Desea añadir un nuevo autobus? (S/N)");
+                                String respuesta = sc.nextLine().trim().toUpperCase();
+
+                                if (!respuesta.equals("S")) {
+                                    salidaAltaAutobus = true;
+                                }
+
                             }catch (NumberFormatException e) {
                                 System.out.println("Error: Debe seleccionar un numero");
                             }catch (ReglasImpuestasException e) {
@@ -258,17 +259,18 @@ public class main {
                                     Validaciones.validarNumeroNoNegativo(plazas);
 
                                     autobuses.modificarElemento(new Autobus(autobus.getMatricula(),annoModificacion,plazas,autobus.getViajes()));
-
-                                    System.out.println("Desea modificar los datos de otro autobus? (S/N)");
-                                    String respuesta = sc.nextLine().trim().toUpperCase();
-
-                                    if (!respuesta.equals("S")){
-                                        salidaModificacionAutobus = true;
-                                    }
                                 }
                                 else{
                                     System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
                                 }
+
+                                System.out.println("Desea modificar los datos de otro autobus? (S/N)");
+                                String respuesta = sc.nextLine().trim().toUpperCase();
+
+                                if (!respuesta.equals("S")){
+                                    salidaModificacionAutobus = true;
+                                }
+                                
                             }catch (NumberFormatException e) {
                                 System.out.println("Error: Debe seleccionar un numero");
                             }catch (ReglasImpuestasException e) {
@@ -452,7 +454,7 @@ public class main {
                                 if (!respuesta.equals("S")) {
                                     salidaModificacionViajes = true;
                                 }
-                                
+
                             }catch (NumberFormatException e) {
                                 System.out.println("Error: Debe seleccionar un numero");
                             }catch (ReglasImpuestasException e) {
