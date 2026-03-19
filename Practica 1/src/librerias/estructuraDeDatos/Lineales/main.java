@@ -65,8 +65,6 @@ public class main {
                 int opcion = Integer.parseInt(sc.nextLine().trim());
                 Validaciones.validarOpcionesMenu(opcion, 3);
 
-
-
                 switch (opcion) {
                     case 1:
                         menuMantenimiento(autobuses);
@@ -75,7 +73,7 @@ public class main {
                         menuListado(autobuses);
                         break;
                     case 0:
-                        System.out.println("Saliendo del programa");
+                        System.out.println("Gracias por utilizar la aplicacion GEST_BUS");
                         salida = true;
                         break;
                 }
@@ -109,7 +107,7 @@ public class main {
                         break;
                     case 3:
                         System.out.println("Listado general de viajes".toUpperCase());
-                        //Listados.listarGeneralViajes(autobuses);
+                        Listados.listarGeneralViajes(autobuses);
                         break;
                     case 4:
                         System.out.println("Listado de viajes que parten de una ciudad determinada".toUpperCase());
@@ -212,7 +210,6 @@ public class main {
                                     if (respuesta.equals("S")){
                                         autobuses.borrarElemento(autobus);
                                         System.out.println("Baja realizada");
-                                        salidaBajaAutobus = true;
                                     }
                                     else {
                                         System.out.println("Proceso de baja abortado");
@@ -221,6 +218,14 @@ public class main {
                                 else{
                                     System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
                                 }
+
+                                System.out.println("Desea dar de baja otro autobus? (S/N)");
+                                String respuesta = sc.nextLine().trim().toUpperCase();
+
+                                if (!respuesta.equals("S")) {
+                                    salidaBajaAutobus = true;
+                                }
+
                             }catch (NumberFormatException e) { //Comprueba Integer.parseInt
                                 System.out.println("Error: Debe seleccionar un numero");
                             }catch (ReglasImpuestasException e) { //Comprueba la excepcion creada
@@ -311,12 +316,19 @@ public class main {
 
                                         Viaje viaje = new Viaje(codigoViaje,origen,destino,hora);
                                         autobus.registrarViaje(viaje);
-                                        salidaAltaViajes = true;
                                     }
                                 }
                                 else{
                                     System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
                                 }
+
+                                System.out.println("Desea registrar otro viaje? (S/N)");
+                                String respuesta = sc.nextLine().trim().toUpperCase();
+
+                                if (!respuesta.equals("S")) {
+                                    salidaAltaViajes = true;
+                                }
+
                             }catch (NumberFormatException e) {
                                 System.out.println("Error: Debe seleccionar un numero");
                             }catch (ReglasImpuestasException e) {
@@ -355,11 +367,9 @@ public class main {
                                         if (respuesta.equals("S")){
                                             autobus.bajaViajes(viaje);
                                             System.out.println("Baja realizada");
-                                            salidaBajaViajes = true;
                                         }
                                         else {
                                             System.out.println("Proceso de baja abortado");
-                                            salidaBajaViajes = true;
                                         }
                                     }
                                     else{
@@ -369,6 +379,14 @@ public class main {
                                 else{
                                     System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
                                 }
+
+                                System.out.println("Desea dar de baja otro viaje? (S/N)");
+                                String respuesta = sc.nextLine().trim().toUpperCase();
+
+                                if (!respuesta.equals("S")) {
+                                    salidaBajaViajes = true;
+                                }
+
                             }catch (NumberFormatException e) {
                                 System.out.println("Error: Debe seleccionar un numero");
                             }catch (ReglasImpuestasException e) {
@@ -428,11 +446,13 @@ public class main {
                                 else{
                                     System.out.println("Error: esta matricula no esta  registrada en la aplicacion");
                                 }
+
                                 System.out.println("Desea modificar otro viaje? (S/N)");
                                 String respuesta = sc.nextLine().trim().toUpperCase();
                                 if (!respuesta.equals("S")) {
                                     salidaModificacionViajes = true;
                                 }
+                                
                             }catch (NumberFormatException e) {
                                 System.out.println("Error: Debe seleccionar un numero");
                             }catch (ReglasImpuestasException e) {
