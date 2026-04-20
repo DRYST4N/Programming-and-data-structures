@@ -1,6 +1,6 @@
 package librerias.estructurasDeDatos.lineales;
 
-public class Trabajo implements Comparable<Trabajo> {
+public class Trabajo {
     private int idUsuario;
     private int prioridad;
     private String titulo;
@@ -50,10 +50,5 @@ public class Trabajo implements Comparable<Trabajo> {
         String numero = String.valueOf(idUsuario);
 
         return Integer.parseInt(String.valueOf(numero.charAt(0)));
-    }
-
-    @Override
-    public int compareTo(Trabajo o) {
-        return Integer.compare(this.prioridad, o.prioridad);
     }
 }

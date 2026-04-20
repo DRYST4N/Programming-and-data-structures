@@ -5,4 +5,5 @@ public interface I_Cola<E> {
     E desencolar();
     E primero();
     boolean esVacia();
+    int contarElemCola();
 }

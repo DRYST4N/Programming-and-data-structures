@@ -2,7 +2,7 @@ package librerias.estructurasDeDatos.lineales;
 
 import librerias.estructurasDeDatos.modelos.I_Cola;
 
-public class LECola<E extends Comparable<E>> implements I_Cola<E> {
+public class LECola<E> implements I_Cola<E> {
 
     private NodoLEG<E> primero;
     private NodoLEG<E> ultimo;
@@ -46,9 +46,7 @@ public class LECola<E extends Comparable<E>> implements I_Cola<E> {
         if(esVacia()){
             return null;
         }
-        else {
-            return this.primero.getDato();
-        }
+        return this.primero.getDato();
     }
 
     @Override
@@ -56,7 +54,12 @@ public class LECola<E extends Comparable<E>> implements I_Cola<E> {
         return this.primero == null;
     }
 
-    public int contarElemCola(NodoLEG<E> actual){
+    @Override
+    public int contarElemCola() {
+        return contarElemCola(this.primero);
+    }
+
+    private int contarElemCola(NodoLEG<E> actual){
         if (actual == null){
             return 0;
         }
