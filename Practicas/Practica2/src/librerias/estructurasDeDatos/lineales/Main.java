@@ -1,12 +1,15 @@
 package librerias.estructurasDeDatos.lineales;
 
+import librerias.excepcionesDeUsuario.Validaciones;
+
 import java.util.Scanner;
 
 public class Main {
 
+    private static Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
         ArrayCola arrayCola = new ArrayCola();
 
         boolean salida = false;
@@ -18,10 +21,13 @@ public class Main {
 
                 switch (eleccion) {
                     case 1:
+                        enviarTrabajoImpresora(arrayCola);
                         break;
                     case 2:
+                        imprimirTrabajos(arrayCola);
                         break;
                     case 3:
+                        mostrarTrabajoMasPesado(arrayCola);
                         break;
                     case 4:
                         break;
@@ -58,5 +64,38 @@ public class Main {
         System.out.println("8.-Reiniciar el Sistema de impresion");
         System.out.println("0.-Salir");
         System.out.print("\nSeleccione una opción: ");
+    }
+
+    private static void enviarTrabajoImpresora(ArrayCola arrayCola){
+
+        System.out.println("Introduce un id de usuario");
+        int idUsuario = Integer.parseInt(sc.nextLine());
+
+        Validaciones.rangosIdUsuario(idUsuario);
+
+        System.out.println("Introduce el Id de la Usuario");
+        String titulo = sc.nextLine();
+
+        System.out.println("Introduce el tamaño del del trabajo");
+        int peso = Integer.parseInt(sc.nextLine());
+
+        arrayCola.enviarTrabajoImpresora(idUsuario, titulo, peso);
+    }
+
+    private static void imprimirTrabajos(ArrayCola arrayCola){
+
+        String respuesta;
+
+        do {
+            arrayCola.imprimirTrabajos();
+
+            System.out.println("¿Desea imprimir otro trabajo?(S/N)");
+            respuesta = sc.nextLine().toUpperCase();
+
+        }while (!respuesta.equals("NO"));
+    }
+
+    private static void mostrarTrabajoMasPesado(ArrayCola arrayCola){
+        arrayCola.mostrarTrabajoMasPesado();
     }
 }
