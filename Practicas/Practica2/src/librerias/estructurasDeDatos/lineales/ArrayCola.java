@@ -10,7 +10,7 @@ public class ArrayCola {
 
     public ArrayCola() {
         this.colas = new LECola[9];
-       for(int i = 0; i < this.colas.length; i++){
+       for(int i = 0; i < 9; i++){
            this.colas[i] = new LECola<Trabajo>();
        }
     }
@@ -25,7 +25,7 @@ public class ArrayCola {
 
         int i = 0;
 
-        if (i < this.colas.length){
+        if (i < 9){
             if (!this.colas[i].esVacia()){
                 Trabajo trabajo = this.colas[i].desencolar();
                 System.out.println("Se ha impreso el trabajo "+trabajo.getTitulo()
@@ -43,7 +43,8 @@ public class ArrayCola {
         Trabajo trabajoMasPesado = null;
 
         for (I_Cola<Trabajo> cola : this.colas) {
-            for (int j = 0; j < cola.contarElemCola(); j++) {
+            int elementos = cola.contarElemCola();
+            for (int j = 0; j < elementos; j++) {
                 Trabajo trabajoActual = cola.desencolar();
 
                 if (trabajoMasPesado == null ||
@@ -51,7 +52,7 @@ public class ArrayCola {
                     trabajoMasPesado = trabajoActual;
                 }
                 if (trabajoActual.getPeso() == trabajoMasPesado.getPeso()) {
-                    if (trabajoActual.getPrioridad() > trabajoMasPesado.getPrioridad() ||
+                    if (trabajoActual.getPrioridad() < trabajoMasPesado.getPrioridad() ||
                             trabajoActual.getPrioridad() == trabajoMasPesado.getPrioridad()) {
                         trabajoMasPesado = trabajoActual;
                     }

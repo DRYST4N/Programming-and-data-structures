@@ -45,7 +45,7 @@ public class Main {
 
                 }
             }catch (NumberFormatException e){
-
+                System.out.println("Introduce un numero valido");
             }
         }while (!salida);
     }
@@ -92,7 +92,7 @@ public class Main {
             System.out.println("¿Desea imprimir otro trabajo?(S/N)");
             respuesta = sc.nextLine().toUpperCase();
 
-        }while (!respuesta.equals("NO"));
+        }while (respuesta.equals("S"));
     }
 
     private static void mostrarTrabajoMasPesado(ArrayCola arrayCola){

@@ -46,9 +46,6 @@ public class Trabajo {
     }
 
     private int asignarPrioridad(int idUsuario) {
-
-        String numero = String.valueOf(idUsuario);
-
-        return Integer.parseInt(String.valueOf(numero.charAt(0)));
+        return idUsuario / 100;
     }
 }
