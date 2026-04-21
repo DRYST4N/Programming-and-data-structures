@@ -21,21 +21,20 @@ public class ArrayCola {
         System.out.println("Trabajo enviado a la impresora");
     }
 
-    public void imprimirTrabajos(){
+    public boolean imprimirTrabajos(){
 
-        int i = 0;
-
-        if (i < 9){
+        for (int i = 0; i < 9;i++){
             if (!this.colas[i].esVacia()){
                 Trabajo trabajo = this.colas[i].desencolar();
                 System.out.println("Se ha impreso el trabajo "+trabajo.getTitulo()
                         +" "+("Usuario "+trabajo.getIdUsuario()
                         +", Prioridad "+trabajo.getPrioridad()));
-            }
-            else{
-                i++;
+
+                return true;
             }
         }
+        System.out.println("No hay mas trabajos para imprimir");
+        return false;
     }
 
     public void mostrarTrabajoMasPesado(){

@@ -46,6 +46,8 @@ public class Main {
                 }
             }catch (NumberFormatException e){
                 System.out.println("Introduce un numero valido");
+            }catch (IllegalArgumentException e){
+                System.out.println("Error: "+e.getMessage());
             }
         }while (!salida);
     }
@@ -84,15 +86,18 @@ public class Main {
 
     private static void imprimirTrabajos(ArrayCola arrayCola){
 
-        String respuesta;
+        String respuesta = "";
+        boolean mastrabajos;
 
         do {
-            arrayCola.imprimirTrabajos();
+            mastrabajos = arrayCola.imprimirTrabajos();
 
-            System.out.println("¿Desea imprimir otro trabajo?(S/N)");
-            respuesta = sc.nextLine().toUpperCase();
+            if (mastrabajos) {
+                System.out.println("¿Desea imprimir otro trabajo?(S/N)");
+                respuesta = sc.nextLine().toUpperCase();
+            }
 
-        }while (respuesta.equals("S"));
+        }while (respuesta.equals("S") && mastrabajos);
     }
 
     private static void mostrarTrabajoMasPesado(ArrayCola arrayCola){
