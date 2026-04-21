@@ -50,7 +50,7 @@ public class ArrayCola {
                         trabajoActual.getPeso() > trabajoMasPesado.getPeso()) {
                     trabajoMasPesado = trabajoActual;
                 }
-                if (trabajoActual.getPeso() == trabajoMasPesado.getPeso()) {
+                else if (trabajoActual.getPeso() == trabajoMasPesado.getPeso()) {
                     if (trabajoActual.getPrioridad() < trabajoMasPesado.getPrioridad() ||
                             trabajoActual.getPrioridad() == trabajoMasPesado.getPrioridad()) {
                         trabajoMasPesado = trabajoActual;

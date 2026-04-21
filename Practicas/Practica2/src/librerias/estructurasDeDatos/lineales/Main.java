@@ -16,7 +16,7 @@ public class Main {
 
         do {
             try{
-                nenuPrincipal();
+                menuPrincipal();
                 int eleccion = Integer.parseInt(sc.nextLine());
 
                 switch (eleccion) {
@@ -52,7 +52,7 @@ public class Main {
         }while (!salida);
     }
 
-    private static void nenuPrincipal(){
+    private static void menuPrincipal(){
 
         System.out.println("\nMENU PRINCIPAL");
         System.out.println("--------------");
@@ -75,7 +75,7 @@ public class Main {
 
         Validaciones.rangosIdUsuario(idUsuario);
 
-        System.out.println("Introduce el Id de la Usuario");
+        System.out.println("Introduce el titulo del trabajo");
         String titulo = sc.nextLine();
 
         System.out.println("Introduce el tamaño del del trabajo");
