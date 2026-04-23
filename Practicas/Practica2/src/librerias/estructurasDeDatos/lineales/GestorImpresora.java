@@ -2,26 +2,46 @@ package librerias.estructurasDeDatos.lineales;
 
 import librerias.estructurasDeDatos.modelos.I_Cola;
 
-import java.lang.annotation.Target;
-import java.util.Scanner;
-
-public class ArrayCola {
+/**
+ * Clase que actúa como Gestor del Sistema de Impresión.
+ * Administra un array de 9 colas segun su prioridad.
+ */
+public class GestorImpresora {
 
     private I_Cola<Trabajo>[] colas;
 
-    public ArrayCola() {
+    /**
+     * Constructor de la clase GestorImpresora.
+     * Inicializa internamente un array de 9 posiciones, donde cada posición
+     * contiene una nueva cola enlazada vacía, representando los
+     * 9 niveles de prioridad posibles del sistema.
+     */
+    public GestorImpresora() {
         this.colas = new LECola[9];
        for(int i = 0; i < 9; i++){
            this.colas[i] = new LECola<Trabajo>();
        }
     }
 
+    /**
+     * Crea un nuevo trabajo de impresión y lo inserta en la cola por  su nivel
+     * de prioridad.
+     * @param idUsuario Identificador numérico del usuario.
+     * @param titulo    Cadena de texto con el título del documento a imprimir.
+     * @param peso      Tamaño del archivo a imprimir, expresado en Kb.
+     */
     public void enviarTrabajoImpresora(int idUsuario, String titulo, int peso){
         Trabajo trabajo = new  Trabajo(idUsuario, titulo, peso);
         colas[trabajo.getPrioridad()-1].encolar(trabajo);
         System.out.println("Trabajo enviado a la impresora");
     }
 
+    /**
+     * Busca y extrae el trabajo con mayor prioridad en el sistema
+     * para simular su impresión.
+     * @return true si se ha encontrado e impreso un trabajo con éxito o
+     * false si todas las colas del sistema se encuentran vacías.
+     */
     public boolean imprimirTrabajos(){
 
         for (int i = 0; i < 9;i++){
@@ -38,6 +58,11 @@ public class ArrayCola {
         return false;
     }
 
+    /**
+     * Busca y muestra por pantalla el trabajo de impresión más pesado
+     * que se encuentra actualmente en espera en todo el sistema.
+     * El estado de las colas permanece inalterado tras la ejecución.
+     */
     public void mostrarTrabajoMasPesado(){
 
         Trabajo trabajoMasPesado = null;
@@ -74,6 +99,12 @@ public class ArrayCola {
         }
     }
 
+    /**
+     * Calcula y muestra la cantidad de trabajos de impresión que un usuario específico
+     * tiene por delante antes de que su documento sea impreso.
+     *
+     * @param idUsuario El identificador del usuario cuyo tiempo de espera se desea consultar.
+     */
     public void informarEspera(int idUsuario){
         int prioridadUsuario = idUsuario / 100;
         int indiceUsuario = prioridadUsuario - 1;
@@ -107,6 +138,11 @@ public class ArrayCola {
         }
     }
 
+    /**
+     * Muestra el número de trabajos encolados para cada uno de los 9 niveles
+     * de prioridad, calculando a su vez el total global de trabajos pendientes
+     * en todo el sistema.
+     */
     public void informeTodasPrioridades(){
         int totalPendientes = 0;
 
@@ -124,6 +160,13 @@ public class ArrayCola {
         System.out.println("Numero total de trabajos pendientes: "+totalPendientes);
         System.out.println("----------------------------------------------------");
     }
+
+    /**
+     * Muestra por pantalla todos los trabajos asociados
+     * a una cola de prioridad específica, manteniendo su orden de llegada.
+     *
+     * @param idUsuario Nivel de prioridad numérico a consultar (1 - 9).
+     */
     public void informeUnaPrioridad(int idUsuario){
         I_Cola<Trabajo> colaSeleccionada = colas[idUsuario - 1];
         int n = colaSeleccionada.contarElemCola();
@@ -143,6 +186,14 @@ public class ArrayCola {
         }
     }
 
+    /**
+     * Reduce el tiempo de espera en una cola específica eliminando trabajos mediante
+     * un algoritmo de saltos incrementales.
+     * El proceso finaliza cuando quedan menos trabajos en la cola que el tamaño del
+     * salto actual.
+     *
+     * @param prioridad El nivel de prioridad de la cola que se va a reducir.
+     */
     public void reducirEspera(int prioridad){
         I_Cola<Trabajo> cola = colas[prioridad - 1];
         int distancia = 2;
@@ -165,6 +216,11 @@ public class ArrayCola {
         }
     }
 
+    /**
+     * Aborta todos los trabajos pendientes en el sistema, vaciando por completo
+     * las 9 colas de prioridad y a medida que se eliminan, se muestra por consola
+     * un listado de los trabajos que han sido cancelados.
+     */
     public void reiniciarSistema(){
         for(int i = 0; i<colas.length; i++){
             while(!colas[i].esVacia()){
@@ -175,6 +231,10 @@ public class ArrayCola {
         System.out.println("Sistema de impresion reiniciado (todas las colas vacias).");
     }
 
+    /**
+     * Método auxiliar para realizar pruebas.
+     * Carga de forma automatizada un conjunto de trabajos de impresión predefinidos.
+     */
     public void rellenarDatosPrueba() {
         // Formato: idUsuario, titulo, peso
         // Prioridad 1 (IDs 100-199)

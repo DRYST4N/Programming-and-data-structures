@@ -4,14 +4,20 @@ import librerias.excepcionesDeUsuario.Validaciones;
 
 import java.util.Scanner;
 
+/**
+ * Clase principal de la aplicación.
+ */
 public class Main {
 
     private static Scanner sc = new Scanner(System.in);
 
+    /**
+     * Método principal que arranca la ejecución del programa.
+     */
     public static void main(String[] args) {
 
-        ArrayCola arrayCola = new ArrayCola();
-        arrayCola.rellenarDatosPrueba();
+        GestorImpresora gestorImpresora = new GestorImpresora();
+        gestorImpresora.rellenarDatosPrueba();
 
         boolean salida = false;
 
@@ -22,28 +28,28 @@ public class Main {
 
                 switch (eleccion) {
                     case 1:
-                        enviarTrabajoImpresora(arrayCola);
+                        enviarTrabajoImpresora(gestorImpresora);
                         break;
                     case 2:
-                        imprimirTrabajos(arrayCola);
+                        imprimirTrabajos(gestorImpresora);
                         break;
                     case 3:
-                        mostrarTrabajoMasPesado(arrayCola);
+                        mostrarTrabajoMasPesado(gestorImpresora);
                         break;
                     case 4:
-                        mostrarTIempoEspera(arrayCola);
+                        mostrarTIempoEspera(gestorImpresora);
                         break;
                     case 5:
-                        informeTodasPrioridades(arrayCola);
+                        informeTodasPrioridades(gestorImpresora);
                         break;
                     case 6:
-                        mostrarInformeUnaPrioridad(arrayCola);
+                        mostrarInformeUnaPrioridad(gestorImpresora);
                         break;
                     case 7:
-                        mostrarReducirEspera(arrayCola);
+                        mostrarReducirEspera(gestorImpresora);
                         break;
                     case 8:
-                        reiniciarSistema(arrayCola);
+                        reiniciarSistema(gestorImpresora);
                         break;
                     case 0:
                         salida = true;
@@ -58,6 +64,9 @@ public class Main {
         }while (!salida);
     }
 
+    /**
+     * Muestra por consola el Menú Principal con sus 9 opciones disponibles.
+     */
     private static void menuPrincipal(){
 
         System.out.println("\nMENU PRINCIPAL");
@@ -74,7 +83,13 @@ public class Main {
         System.out.print("\nSeleccione una opción: ");
     }
 
-    private static void enviarTrabajoImpresora(ArrayCola arrayCola){
+    /**
+     * Solicita al usuario para crear un nuevo trabajo de impresión y
+     * Valida el ID del usuario.
+     *
+     * @param gestorImpresora Instancia del gestor del sistema de colas.
+     */
+    private static void enviarTrabajoImpresora(GestorImpresora gestorImpresora){
 
         System.out.println("Introduce un id de usuario");
         int idUsuario = Integer.parseInt(sc.nextLine());
@@ -87,16 +102,22 @@ public class Main {
         System.out.println("Introduce el tamaño del del trabajo");
         int peso = Integer.parseInt(sc.nextLine());
 
-        arrayCola.enviarTrabajoImpresora(idUsuario, titulo, peso);
+        gestorImpresora.enviarTrabajoImpresora(idUsuario, titulo, peso);
     }
 
-    private static void imprimirTrabajos(ArrayCola arrayCola){
+    /**
+     * Imprime los trabajos en espera y se detenie
+     * si el usuario lo indica o si el sistema se queda sin trabajos.
+     *
+     * @param gestorImpresora Instancia del gestor del sistema de colas.
+     */
+    private static void imprimirTrabajos(GestorImpresora gestorImpresora){
 
         String respuesta = "";
         boolean mastrabajos;
 
         do {
-            mastrabajos = arrayCola.imprimirTrabajos();
+            mastrabajos = gestorImpresora.imprimirTrabajos();
 
             if (mastrabajos) {
                 System.out.println("¿Desea imprimir otro trabajo?(S/N)");
@@ -106,41 +127,76 @@ public class Main {
         }while (respuesta.equals("S") && mastrabajos);
     }
 
-    private static void mostrarTrabajoMasPesado(ArrayCola arrayCola){
-        arrayCola.mostrarTrabajoMasPesado();
+    /**
+     * Invoca al gestor para buscar y mostrar el trabajo de impresión más pesado.
+     *
+     * @param gestorImpresora Instancia del gestor del sistema de colas.
+     */
+    private static void mostrarTrabajoMasPesado(GestorImpresora gestorImpresora){
+        gestorImpresora.mostrarTrabajoMasPesado();
     }
 
-    private static void informeTodasPrioridades(ArrayCola arrayCola){
-        arrayCola.informeTodasPrioridades();
+    /**
+     * Invoca al gestor para generar un informe general detallando la cantidad
+     * de trabajos pendientes por nivel de prioridad.
+     *
+     * @param gestorImpresora Instancia del gestor del sistema de colas.
+     */
+    private static void informeTodasPrioridades(GestorImpresora gestorImpresora){
+        gestorImpresora.informeTodasPrioridades();
     }
 
-    private static void mostrarTIempoEspera(ArrayCola arrayCola){
+    /**
+     * Solicita al usuario un ID y consulta cuántos trabajos de impresión tiene
+     * por delante.
+     *
+     * @param gestorImpresora Instancia del gestor del sistema de colas.
+     */
+    private static void mostrarTIempoEspera(GestorImpresora gestorImpresora){
         System.out.println("Introduce un id de usuario");
         int idBusqueda = Integer.parseInt(sc.nextLine());
-        arrayCola.informarEspera(idBusqueda);
+        gestorImpresora.informarEspera(idBusqueda);
     }
 
-    private static void mostrarInformeUnaPrioridad(ArrayCola arrayCola){
+    /**
+     * Solicita al usuario un nivel de prioridad y muestra un informe con todos
+     * los trabajos que se encuentran esperando en dicha cola.
+     *
+     * @param gestorImpresora Instancia del gestor del sistema de colas.
+     */
+    private static void mostrarInformeUnaPrioridad(GestorImpresora gestorImpresora){
 
         System.out.println("Introduce la prioridad que se desea consultar (1 al 9)");
         int prioridadConsulta = Integer.parseInt(sc.nextLine());
 
         Validaciones.rangoPrioridad(prioridadConsulta);
 
-        arrayCola.informeUnaPrioridad(prioridadConsulta);
+        gestorImpresora.informeUnaPrioridad(prioridadConsulta);
     }
 
-    private static void mostrarReducirEspera(ArrayCola arrayCola){
+    /**
+     * Solicita al usuario una prioridad para aplicar el algoritmo de reducción de
+     * esperas mediante saltos. Valida la prioridad antes de la ejecución.
+     *
+     * @param gestorImpresora Instancia del gestor del sistema de colas.
+     */
+    private static void mostrarReducirEspera(GestorImpresora gestorImpresora){
 
         System.out.println("Introduce la prioridad para reducir la espera (1 al 9)");
         int espera = Integer.parseInt(sc.nextLine());
         Validaciones.rangoPrioridad(espera);
 
-        arrayCola.reducirEspera(espera);
+        gestorImpresora.reducirEspera(espera);
     }
 
-    private static void reiniciarSistema(ArrayCola arrayCola){
-        arrayCola.reiniciarSistema();
+    /**
+     * Invoca al gestor para abortar todos los trabajos del sistema, vaciando
+     * completamente las colas e imprimiendo el listado de elementos abortados.
+     *
+     * @param gestorImpresora Instancia del gestor del sistema de colas.
+     */
+    private static void reiniciarSistema(GestorImpresora gestorImpresora){
+        gestorImpresora.reiniciarSistema();
     }
 
 }
