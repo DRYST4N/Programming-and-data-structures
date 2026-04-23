@@ -81,7 +81,7 @@ public class ArrayCola {
         boolean encontrado = false;
 
         for(int i = 0; i< indiceUsuario; i++){
-            contadorTrabajos += colas[indiceUsuario].contarElemCola();
+            contadorTrabajos += colas[i].contarElemCola();
         }
 
         I_Cola<Trabajo> suCola = colas[indiceUsuario];
@@ -90,7 +90,7 @@ public class ArrayCola {
         for (int i = 0; i < n; i++) {
             Trabajo t = suCola.desencolar();
 
-            if (!encontrado && t.getPrioridad() ==idUsuario) {
+            if (!encontrado && t.getIdUsuario() == idUsuario) {
                 encontrado = true;
             }
 
@@ -168,7 +168,8 @@ public class ArrayCola {
     public void reiniciarSistema(){
         for(int i = 0; i<colas.length; i++){
             while(!colas[i].esVacia()){
-                colas[i].desencolar();
+                Trabajo t = colas[i].desencolar();
+                System.out.println("Id Usuario: "+t.getIdUsuario()+"\t Titulo: "+t.getTitulo());
             }
         }
         System.out.println("Sistema de impresion reiniciado (todas las colas vacias).");

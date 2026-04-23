@@ -34,7 +34,7 @@ public class Main {
                         mostrarTIempoEspera(arrayCola);
                         break;
                     case 5:
-                        arrayCola.informeTodasPrioridades();
+                        informeTodasPrioridades(arrayCola);
                         break;
                     case 6:
                         mostrarInformeUnaPrioridad(arrayCola);
@@ -43,7 +43,7 @@ public class Main {
                         mostrarReducirEspera(arrayCola);
                         break;
                     case 8:
-                        arrayCola.reiniciarSistema();
+                        reiniciarSistema(arrayCola);
                         break;
                     case 0:
                         salida = true;
@@ -110,12 +110,19 @@ public class Main {
         arrayCola.mostrarTrabajoMasPesado();
     }
 
+    private static void informeTodasPrioridades(ArrayCola arrayCola){
+        arrayCola.informeTodasPrioridades();
+    }
+
     private static void mostrarTIempoEspera(ArrayCola arrayCola){
+        System.out.println("Introduce un id de usuario");
         int idBusqueda = Integer.parseInt(sc.nextLine());
         arrayCola.informarEspera(idBusqueda);
     }
 
     private static void mostrarInformeUnaPrioridad(ArrayCola arrayCola){
+
+        System.out.println("Introduce la prioridad que se desea consultar (1 al 9)");
         int prioridadConsulta = Integer.parseInt(sc.nextLine());
 
         Validaciones.rangoPrioridad(prioridadConsulta);
@@ -124,10 +131,16 @@ public class Main {
     }
 
     private static void mostrarReducirEspera(ArrayCola arrayCola){
+
+        System.out.println("Introduce la prioridad para reducir la espera (1 al 9)");
         int espera = Integer.parseInt(sc.nextLine());
         Validaciones.rangoPrioridad(espera);
 
         arrayCola.reducirEspera(espera);
+    }
+
+    private static void reiniciarSistema(ArrayCola arrayCola){
+        arrayCola.reiniciarSistema();
     }
 
 }
