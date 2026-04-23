@@ -28,7 +28,7 @@ public class ArrayCola {
             if (!this.colas[i].esVacia()){
                 Trabajo trabajo = this.colas[i].desencolar();
                 System.out.println("Se ha impreso el trabajo "+trabajo.getTitulo()
-                        +" "+("Usuario "+trabajo.getIdUsuario()
+                        +" "+("Id Usuario "+trabajo.getIdUsuario()
                         +", Prioridad "+trabajo.getPrioridad()));
 
                 return true;
@@ -62,10 +62,10 @@ public class ArrayCola {
         }
 
         if (trabajoMasPesado != null){
-            System.out.println("ID_Usuario\tNivel de Prioridad\tTitulo\tTamaño(Kb)");
+            System.out.println("ID_Usuario\tNivel de Prioridad\tTitulo\t\tTamaño(Kb)");
             System.out.println("----------------------------------------------------");
-            System.out.println(trabajoMasPesado.getIdUsuario()+"\t"
-                    +trabajoMasPesado.getPrioridad()+"\t"
+            System.out.println(trabajoMasPesado.getIdUsuario()+"\t\t\t\t"
+                    +trabajoMasPesado.getPrioridad()+"\t\t\t"
                     +trabajoMasPesado.getTitulo()+"\t"
                     +trabajoMasPesado.getPeso()+"\t");
         }
@@ -101,7 +101,7 @@ public class ArrayCola {
         }
 
         if(encontrado){
-            System.out.println("** El usuario " +idUsuario +"tiene delante "+ contadorTrabajos + "trabajos");
+            System.out.println("** El usuario " +idUsuario +" tiene delante "+ contadorTrabajos + " trabajos");
         }else{
             System.out.println("** No existen trabajos pendientes del usuario "+idUsuario);
         }
@@ -117,7 +117,7 @@ public class ArrayCola {
         for(int i= 0; i<colas.length; i++){
             int trabajosEnCola = colas[i].contarElemCola();
 
-            System.out.println((i+1)+"\t\t\t"+trabajosEnCola);
+            System.out.println("\t\t\t"+(i+1)+"\t\t\t"+trabajosEnCola);
             totalPendientes += trabajosEnCola;
         }
         System.out.println("----------------------------------------------------");
