@@ -7,4 +7,10 @@ public class Validaciones {
             throw new IllegalArgumentException("El Id de Usuario debe de estar entre 100 y 999");
         }
     }
+
+    public static void rangoPrioridad(int prioridad){
+        if (prioridad < 1 || prioridad > 9){
+            throw new IllegalArgumentException("El Prioridad debe ser entre 1 y 9");
+        }
+    }
 }

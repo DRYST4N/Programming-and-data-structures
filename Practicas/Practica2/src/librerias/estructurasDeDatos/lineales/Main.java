@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) {
 
         ArrayCola arrayCola = new ArrayCola();
+        arrayCola.rellenarDatosPrueba();
 
         boolean salida = false;
 
@@ -30,14 +31,19 @@ public class Main {
                         mostrarTrabajoMasPesado(arrayCola);
                         break;
                     case 4:
+                        mostrarTIempoEspera(arrayCola);
                         break;
                     case 5:
+                        arrayCola.informeTodasPrioridades();
                         break;
                     case 6:
+                        mostrarInformeUnaPrioridad(arrayCola);
                         break;
                     case 7:
+                        mostrarReducirEspera(arrayCola);
                         break;
                     case 8:
+                        arrayCola.reiniciarSistema();
                         break;
                     case 0:
                         salida = true;
@@ -103,4 +109,25 @@ public class Main {
     private static void mostrarTrabajoMasPesado(ArrayCola arrayCola){
         arrayCola.mostrarTrabajoMasPesado();
     }
+
+    private static void mostrarTIempoEspera(ArrayCola arrayCola){
+        int idBusqueda = Integer.parseInt(sc.nextLine());
+        arrayCola.informarEspera(idBusqueda);
+    }
+
+    private static void mostrarInformeUnaPrioridad(ArrayCola arrayCola){
+        int prioridadConsulta = Integer.parseInt(sc.nextLine());
+
+        Validaciones.rangoPrioridad(prioridadConsulta);
+
+        arrayCola.informeUnaPrioridad(prioridadConsulta);
+    }
+
+    private static void mostrarReducirEspera(ArrayCola arrayCola){
+        int espera = Integer.parseInt(sc.nextLine());
+        Validaciones.rangoPrioridad(espera);
+
+        arrayCola.reducirEspera(espera);
+    }
+
 }
