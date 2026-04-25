@@ -155,6 +155,8 @@ public class Main {
     private static void mostrarTIempoEspera(GestorImpresora gestorImpresora){
         System.out.println("Introduce un id de usuario");
         int idBusqueda = Integer.parseInt(sc.nextLine());
+
+        Validaciones.rangosIdUsuario(idBusqueda);
         gestorImpresora.informarEspera(idBusqueda);
     }
 
