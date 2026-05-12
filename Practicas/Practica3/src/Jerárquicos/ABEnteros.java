@@ -19,7 +19,21 @@ public class ABEnteros extends AB<Integer> implements I_ABEnteros {
 
     @Override
     public boolean RaizIgualNodosInternos() {
+
+        if (this.getRaiz() == RaizIgualNodosInternos(this.raiz)){
+            return true;
+        }
         return false;
+    }
+
+    private int RaizIgualNodosInternos(NodoAB<Integer> nodo){
+        if((nodo == null) || ((nodo.getIzquierda() == null)&&(nodo.getDerecha() == null))){
+            return 0;
+        }
+        else{
+            return  1 + RaizIgualNodosInternos(nodo.getDerecha())
+                    + RaizIgualNodosInternos(nodo.getIzquierda());
+        }
     }
 
     @Override
@@ -27,35 +41,20 @@ public class ABEnteros extends AB<Integer> implements I_ABEnteros {
         return 0;
     }
 
-    @Override
-    public boolean esVacio() {
-        return false;
-    }
-
-    @Override
-    public NodoAB<Integer> devolverDerecho() {
-        return null;
-    }
-
-    @Override
-    public NodoAB<Integer> devolverIzquierda() {
-        return null;
-    }
-
-    @Override
-    public void devolverRaiz() {
-
-    }
-
-    @Override
-    public void EliminarNodosInferiores() {
+    private void MinimoValorNivel(NodoAB<Integer> nodo){
 
     }
 
     @Override
     public void nivelesAB() {
+    }
+
+    private void nivelesAB(NodoAB<Integer> nodo){
 
     }
+
+
+    //con que se realicen en la clase AB vale
 
     @Override
     public void PreOrden() {

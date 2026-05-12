@@ -4,11 +4,11 @@ import Jerárquicos.NodoAB;
 
 public interface I_AB<E> {
     boolean esVacio();
-    NodoAB<E> getDerecho();
+    NodoAB<E> getDerecha();
     NodoAB<E> getIzquierda();
-    void getRaiz();
+    E getRaiz();
 
-    void EliminarNodosInferiores();
+    void EliminarNodosInferiores(int nivel);
     void nivelesAB();
 
     void PreOrden();
@@ -16,7 +16,7 @@ public interface I_AB<E> {
     void InOrdenConverso();
     void PostOrden();
 
-    void setDerecho(NodoAB<E> derecho);
+    void setDerecha(NodoAB<E> derecho);
     void setIzquierda(NodoAB<E> izquierdo);
     void setRaiz(E dato);
 }
