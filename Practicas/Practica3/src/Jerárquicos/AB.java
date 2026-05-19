@@ -41,8 +41,15 @@ public class AB<E> implements I_AB<E> {
     }
 
     @Override
-    public void nivelesAB() {
+    public int nivelesAB() {
+        return nivelesAB(this.raiz);
+    }
 
+    private int nivelesAB(NodoAB<E> nodo){
+        if ( nodo == null ){
+            return 0;
+        }
+        return 1+Math.max(nivelesAB(nodo.getDerecha()),nivelesAB(nodo.getIzquierda()));
     }
 
     @Override

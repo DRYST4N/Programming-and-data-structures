@@ -2,6 +2,8 @@ package Jerárquicos;
 
 import Modelo.I_ABEnteros;
 
+import static Excepciones.Excepciones.nivelesFueraDeRango;
+
 public class ABEnteros extends AB<Integer> implements I_ABEnteros {
 
     public ABEnteros(){
@@ -14,7 +16,21 @@ public class ABEnteros extends AB<Integer> implements I_ABEnteros {
 
     @Override
     public boolean EsABB() {
-        return false;
+
+        return EsABB(this.raiz, null, null);
+    }
+
+    private boolean EsABB(NodoAB<Integer>nodo, Integer minimo, Integer maximo) {
+
+        if (nodo == null){
+            return true;
+        }
+        if ((minimo != null && nodo.getDato() <= minimo)
+                || (maximo != null && nodo.getDato() >= maximo)){
+            return false;
+        }
+        return EsABB(nodo.getIzquierda(),minimo,nodo.getDato())
+                && EsABB(nodo.getDerecha(), nodo.getDato(), maximo);
     }
 
     @Override
@@ -38,41 +54,26 @@ public class ABEnteros extends AB<Integer> implements I_ABEnteros {
 
     @Override
     public int MinimoValorNivel(int n) {
-        return 0;
+
+        int numeroNiveles = nivelesAB();
+
+        nivelesFueraDeRango(n,numeroNiveles);
+
+        return MinimoValorNivel(this.raiz,0,n);
     }
 
-    private void MinimoValorNivel(NodoAB<Integer> nodo){
+    private int MinimoValorNivel(NodoAB<Integer> nodo, int nivelActual, int nivel){
 
-    }
+        if (nodo == null){
+            return Integer.MAX_VALUE;
+        }
+        if(nivel == nivelActual){
+            return nodo.getDato();
+        }
 
-    @Override
-    public void nivelesAB() {
-    }
+        int minimoValorDerecha = MinimoValorNivel(nodo.getDerecha(),nivelActual + 1,nivel);
+        int minimoValorIzquierda = MinimoValorNivel(nodo.getIzquierda(), nivelActual + 1,nivel);
 
-    private void nivelesAB(NodoAB<Integer> nodo){
-
-    }
-
-
-    //con que se realicen en la clase AB vale
-
-    @Override
-    public void PreOrden() {
-
-    }
-
-    @Override
-    public void InOrden() {
-
-    }
-
-    @Override
-    public void InOrdenConverso() {
-
-    }
-
-    @Override
-    public void PostOrden() {
-
+        return Math.min(minimoValorDerecha,minimoValorIzquierda);
     }
 }

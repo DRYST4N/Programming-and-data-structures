@@ -9,7 +9,7 @@ public interface I_AB<E> {
     E getRaiz();
 
     void EliminarNodosInferiores(int nivel);
-    void nivelesAB();
+    int nivelesAB();
 
     void PreOrden();
     void InOrden();

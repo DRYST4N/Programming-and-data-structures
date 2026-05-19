@@ -36,6 +36,8 @@ public class Main<E> {
                     case 5:
                         break;
                     case 6:
+                        System.out.println("El AB1 es un ABB:"+abe1.EsABB());
+                        System.out.println("El AB2 es un ABB:"+abe2.EsABB());
                         break;
                     case 7:
                         System.out.println("El AB1 tiene raiz igual a nodos internos:"+abe1.RaizIgualNodosInternos());
@@ -48,6 +50,14 @@ public class Main<E> {
                         abe2.EliminarNodosInferiores(3);
                         break;
                     case 10:
+                        System.out.println("Introduce el nivel");
+                        int nivel = Integer.parseInt(sc.nextLine());
+
+                        int minimoValorAbe1 = abe1.MinimoValorNivel(nivel);
+                        int minimoValorAbe2 = abe2.MinimoValorNivel(nivel);
+
+                        System.out.println("Árbol AB1: El valor mínimo obtenido en el nivel N es "+minimoValorAbe1);
+                        System.out.println("Árbol AB1: El valor mínimo obtenido en el nivel N es "+minimoValorAbe2);
                         break;
                     case 0:
                         salida = true;
