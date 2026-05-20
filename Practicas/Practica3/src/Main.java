@@ -36,12 +36,12 @@ public class Main<E> {
                     case 5:
                         break;
                     case 6:
-                        System.out.println("El AB1 es un ABB:"+abe1.EsABB());
-                        System.out.println("El AB2 es un ABB:"+abe2.EsABB());
+                        System.out.println("El AB1 es un ABB:"+(abe1.EsABB()?"SI":"NO"));
+                        System.out.println("El AB2 es un ABB:"+(abe2.EsABB()?"SI":"NO"));
                         break;
                     case 7:
-                        System.out.println("El AB1 tiene raiz igual a nodos internos:"+abe1.RaizIgualNodosInternos());
-                        System.out.println("El AB2 tiene raiz igual a nodos internos:"+abe2.RaizIgualNodosInternos());
+                        System.out.println("El AB1 tiene raiz igual a nodos internos:"+(abe1.RaizIgualNodosInternos()?"SI":"NO"));
+                        System.out.println("El AB2 tiene raiz igual a nodos internos:"+(abe2.RaizIgualNodosInternos()?"SI":"NO"));
                         break;
                     case 8:
                         abe1.EliminarNodosInferiores(2);

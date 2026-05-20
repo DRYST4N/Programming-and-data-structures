@@ -4,9 +4,10 @@ import Jerárquicos.NodoAB;
 
 public interface I_AB<E> {
     boolean esVacio();
-    NodoAB<E> getDerecha();
-    NodoAB<E> getIzquierda();
+    I_AB<E> getDerecha();
+    I_AB<E> getIzquierda();
     E getRaiz();
+    boolean esHoja();
 
     void EliminarNodosInferiores(int nivel);
     int nivelesAB();
@@ -16,7 +17,7 @@ public interface I_AB<E> {
     void InOrdenConverso();
     void PostOrden();
 
-    void setDerecha(NodoAB<E> derecho);
-    void setIzquierda(NodoAB<E> izquierdo);
+    void setDerecha(I_AB<E> derecho);
+    void setIzquierda(I_AB<E> izquierdo);
     void setRaiz(E dato);
 }

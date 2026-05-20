@@ -21,18 +21,26 @@ public class AB<E> implements I_AB<E> {
     }
 
     @Override
-    public NodoAB<E> getDerecha() {
-        return this.raiz.getDerecha();
+    public I_AB<E> getDerecha() {
+        return (I_AB<E>) this.raiz.getDerecha();
     }
 
     @Override
-    public NodoAB<E> getIzquierda() {
-        return this.raiz.getIzquierda();
+    public I_AB<E> getIzquierda() {
+        return (I_AB<E>) this.raiz.getIzquierda();
     }
 
     @Override
     public E getRaiz() {
         return this.raiz.getDato();
+    }
+
+    @Override
+    public boolean esHoja() {
+        if (this.raiz.getDerecha() == null && this.raiz.getIzquierda() == null) {
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -73,13 +81,13 @@ public class AB<E> implements I_AB<E> {
     }
 
     @Override
-    public void setDerecha(NodoAB<E> derecho) {
-        this.raiz.getDerecha().setDerecha(derecho);
+    public void setDerecha(I_AB<E> derecho) {
+        this.raiz.getDerecha().setDerecha((NodoAB<E>) derecho);
     }
 
     @Override
-    public void setIzquierda(NodoAB<E> izquierdo) {
-        this.raiz.getIzquierda().setIzquierda(izquierdo);
+    public void setIzquierda(I_AB<E> izquierdo) {
+        this.raiz.getIzquierda().setIzquierda((NodoAB<E>) izquierdo);
     }
 
     @Override
