@@ -36,10 +36,10 @@ public class ABEnteros extends AB<Integer> implements I_ABEnteros {
     @Override
     public boolean RaizIgualNodosInternos() {
 
-        if (this.getRaiz() == RaizIgualNodosInternos(this.raiz)){
-            return true;
+        if (esVacio()){
+            return false;
         }
-        return false;
+        return this.getRaiz() == RaizIgualNodosInternos(this.raiz);
     }
 
     private int RaizIgualNodosInternos(NodoAB<Integer> nodo){
