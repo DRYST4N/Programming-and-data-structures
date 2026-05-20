@@ -117,7 +117,7 @@ public class PruebaABEnteros {
         NodoAB<Integer> nodo245 = new NodoAB<Integer>(245);
 
         nodo240.setIzquierda(nodo108);
-        nodo108.setDerecha(nodo245);
+        nodo240.setDerecha(nodo245);
 
         NodoAB<Integer> nodo110 = new NodoAB<Integer>(110);
 

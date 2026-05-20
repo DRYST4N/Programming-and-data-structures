@@ -22,7 +22,7 @@ public class AB<E> implements I_AB<E> {
 
     @Override
     public I_AB<E> getDerecha() {
-        if (this.raiz.getDerecha() == null) {
+        if (esVacio()) {
             return new AB<E>();
         }
         return new AB<E>(this.raiz.getDerecha());
@@ -30,7 +30,7 @@ public class AB<E> implements I_AB<E> {
 
     @Override
     public I_AB<E> getIzquierda() {
-        if (this.raiz.getIzquierda() == null) {
+        if (esVacio()) {
             return new AB<E>();
         }
         return new AB<E>(this.raiz.getIzquierda());
@@ -91,18 +91,22 @@ public class AB<E> implements I_AB<E> {
 
     @Override
     public void setDerecha(I_AB<E> derecho) {
-        this.raiz.getDerecha().setDerecha(((AB<E>) derecho).raiz);
+        if (!esVacio()) {
+            this.raiz.setDerecha(((AB<E>) derecho).raiz);
+        }
     }
 
     @Override
     public void setIzquierda(I_AB<E> izquierdo) {
-        this.raiz.getIzquierda().setIzquierda(((AB<E>) izquierdo).raiz);
+        if (!esVacio()) {
+            this.raiz.setIzquierda(((AB<E>) izquierdo).raiz);
+        }
     }
 
     @Override
     public void setRaiz(E dato) {
         if(esVacio()){
-            this.raiz = new NodoAB<>(dato);
+            this.raiz = new NodoAB<E>(dato);
         }
         else{
             this.raiz.setDato(dato);
