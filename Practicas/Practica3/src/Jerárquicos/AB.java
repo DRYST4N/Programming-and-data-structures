@@ -10,10 +10,9 @@ public class AB<E> implements I_AB<E> {
         this.raiz = null;
     }
 
-    public AB(NodoAB<E> raiz){
+    private AB(NodoAB<E> raiz){
         this.raiz = raiz;
     }
-
 
     @Override
     public boolean esVacio() {
@@ -22,7 +21,7 @@ public class AB<E> implements I_AB<E> {
 
     @Override
     public I_AB<E> getDerecha() {
-        if (esVacio()) {
+        if (esVacio() || this.raiz.getDerecha() == null) {
             return new AB<E>();
         }
         return new AB<E>(this.raiz.getDerecha());
@@ -30,7 +29,7 @@ public class AB<E> implements I_AB<E> {
 
     @Override
     public I_AB<E> getIzquierda() {
-        if (esVacio()) {
+        if (esVacio() || this.raiz.getIzquierda() == null) {
             return new AB<E>();
         }
         return new AB<E>(this.raiz.getIzquierda());
@@ -92,15 +91,21 @@ public class AB<E> implements I_AB<E> {
     @Override
     public void setDerecha(I_AB<E> derecho) {
         if (!esVacio()) {
-            this.raiz.setDerecha(((AB<E>) derecho).raiz);
+            this.raiz =  new NodoAB<E>(null);
         }
+
+        AB<E> arbolBinarioDerecho = (AB<E>) derecho;
+        this.raiz.setDerecha(arbolBinarioDerecho.raiz);
     }
 
     @Override
     public void setIzquierda(I_AB<E> izquierdo) {
         if (!esVacio()) {
-            this.raiz.setIzquierda(((AB<E>) izquierdo).raiz);
+            this.raiz = new NodoAB<E>(null);
         }
+
+        AB<E> arbolBinarioIzquierda = (AB<E>) izquierdo;
+        this.raiz.setIzquierda(arbolBinarioIzquierda.raiz);
     }
 
     @Override
