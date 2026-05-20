@@ -38,15 +38,18 @@ public class AB<E> implements I_AB<E> {
 
     @Override
     public E getRaiz() {
+        if (esVacio()){
+            return null;
+        }
         return this.raiz.getDato();
     }
 
     @Override
     public boolean esHoja() {
-        if (this.raiz.getDerecha() == null && this.raiz.getIzquierda() == null) {
-            return true;
+        if (esVacio()) {
+            return false;
         }
-        return false;
+        return this.raiz.getDerecha() == null && this.raiz.getIzquierda() == null;
     }
 
     @Override
@@ -98,7 +101,12 @@ public class AB<E> implements I_AB<E> {
 
     @Override
     public void setRaiz(E dato) {
-        this.raiz.setDato(dato);
+        if(esVacio()){
+            this.raiz = new NodoAB<>(dato);
+        }
+        else{
+            this.raiz.setDato(dato);
+        }
     }
 
     private void EliminarNodosInferiores(NodoAB<E> nodo,int nivelActual, int nivel){
