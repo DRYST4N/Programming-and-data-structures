@@ -64,7 +64,11 @@ public class PruebaABEnteros {
 
             } catch (NumberFormatException e) {
                 System.out.println("Se debe seleccionar un numero valido");
+            } catch (IllegalArgumentException e) {
+                throw new RuntimeException("Error: "+e.getMessage());
             }
+        System.out.print("Pulse una tecla para continuar.....");
+        sc.nextLine();
         }while (!salida);
     }
 
