@@ -127,7 +127,7 @@ public class PruebaABEnteros {
         nodo71.setDerecha(nodo19);
 
         nodo17.setIzquierda(nodo3);
-        nodo17.setIzquierda(nodo18);
+        nodo17.setDerecha(nodo18);
 
         //Nodos de la parte derecha
 

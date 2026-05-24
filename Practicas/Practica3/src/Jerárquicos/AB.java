@@ -71,12 +71,12 @@ public class AB<E> implements I_AB<E> {
     @Override
     public void PreOrden() {
         PreOrden(this.raiz);
-        System.out.println();
+        System.out.print("");
     }
 
     private void PreOrden(NodoAB<E> nodo){
         if (nodo == null) return;
-        System.out.println(nodo.getDato() + " ");
+        System.out.print(nodo.getDato() + " ");
         PreOrden(nodo.getIzquierda());
         PreOrden(nodo.getDerecha());
     }
@@ -84,45 +84,45 @@ public class AB<E> implements I_AB<E> {
     @Override
     public void InOrden() {
         InOrden(this.raiz);
-        System.out.println();
+        System.out.print("");
     }
 
     private void InOrden(NodoAB<E> nodo){
         if (nodo == null) return;
         InOrden(nodo.getIzquierda());
-        System.out.println(nodo.getDato() + " ");
+        System.out.print(nodo.getDato() + " ");
         InOrden(nodo.getDerecha());
     }
 
     @Override
     public void InOrdenConverso() {
         InOrdenConverso(this.raiz);
-        System.out.println();
+        System.out.print("");
     }
 
     private void InOrdenConverso(NodoAB<E> nodo){
         if (nodo == null) return;
         InOrdenConverso(nodo.getDerecha());
-        System.out.println(nodo.getDato() + " ");
+        System.out.print(nodo.getDato() + " ");
         InOrdenConverso(nodo.getIzquierda());
     }
 
     @Override
     public void PostOrden() {
         PostOrden(this.raiz);
-        System.out.println();
+        System.out.print("");
     }
 
     private void PostOrden(NodoAB<E> nodo){
         if (nodo == null) return;
         PostOrden(nodo.getIzquierda());
         PostOrden(nodo.getDerecha());
-        System.out.println(nodo.getDato() + " ");
+        System.out.print(nodo.getDato() + " ");
     }
 
     @Override
     public void setDerecha(I_AB<E> derecho) {
-        if (!esVacio()) {
+        if (esVacio()) {
             this.raiz =  new NodoAB<E>(null);
         }
 
@@ -132,7 +132,7 @@ public class AB<E> implements I_AB<E> {
 
     @Override
     public void setIzquierda(I_AB<E> izquierdo) {
-        if (!esVacio()) {
+        if (esVacio()) {
             this.raiz = new NodoAB<E>(null);
         }
 

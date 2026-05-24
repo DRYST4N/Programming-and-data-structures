@@ -10,10 +10,6 @@ public class ABEnteros extends AB<Integer> implements I_ABEnteros {
         super();
     }
 
-    public ABEnteros(NodoAB<Integer> raiz){
-        super(raiz);
-    }
-
     @Override
     public boolean EsABB() {
 
