@@ -1,12 +1,13 @@
 package Modelo;
 
-import Jerárquicos.NodoAB;
+import Jerarquicos.NodoAB;
 
 public interface I_AB<E> {
     boolean esVacio();
     I_AB<E> getDerecha();
     I_AB<E> getIzquierda();
-    E getRaiz();
+    E getDato();
+    NodoAB<E> getRaiz();
     boolean esHoja();
 
     void EliminarNodosInferiores(int nivel);

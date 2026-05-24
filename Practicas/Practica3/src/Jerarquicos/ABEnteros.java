@@ -1,4 +1,4 @@
-package Jerárquicos;
+package Jerarquicos;
 
 import Modelo.I_ABEnteros;
 
@@ -13,7 +13,7 @@ public class ABEnteros extends AB<Integer> implements I_ABEnteros {
     @Override
     public boolean EsABB() {
 
-        return EsABB(this.raiz, null, null);
+        return EsABB(this.getRaiz(), null, null);
     }
 
     private boolean EsABB(NodoAB<Integer>nodo, Integer minimo, Integer maximo) {
@@ -35,7 +35,7 @@ public class ABEnteros extends AB<Integer> implements I_ABEnteros {
         if (esVacio()){
             return false;
         }
-        return this.getRaiz() == RaizIgualNodosInternos(this.raiz);
+        return this.getDato() == RaizIgualNodosInternos(this.getRaiz());
     }
 
     private int RaizIgualNodosInternos(NodoAB<Integer> nodo){
@@ -55,7 +55,7 @@ public class ABEnteros extends AB<Integer> implements I_ABEnteros {
 
         nivelesFueraDeRango(n,numeroNiveles);
 
-        return MinimoValorNivel(this.raiz,0,n);
+        return MinimoValorNivel(this.getRaiz(),0,n);
     }
 
     private int MinimoValorNivel(NodoAB<Integer> nodo, int nivelActual, int nivel){
@@ -72,4 +72,5 @@ public class ABEnteros extends AB<Integer> implements I_ABEnteros {
 
         return Math.min(minimoValorDerecha,minimoValorIzquierda);
     }
+
 }

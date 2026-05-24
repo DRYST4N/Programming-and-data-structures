@@ -1,10 +1,19 @@
-package Jerárquicos;
+package Jerarquicos;
 
 import Modelo.I_AB;
 
+/**
+ * Implementación del TAD Árbol Binario.
+ * <p>
+ * El árbol se define como una estructura jerárquica no lineal. Un árbol puede
+ * estar vacío (raíz nula) o compuesto por una raíz y dos subárboles
+ * (izquierdo y derecho) que también son árboles binarios.
+ * </p>
+ * * @param <E> El tipo de dato que contendrá el árbol.
+ */
 public class AB<E> implements I_AB<E> {
 
-    NodoAB<E> raiz;
+    private NodoAB<E> raiz;
 
     public AB(){
         this.raiz = null;
@@ -36,11 +45,19 @@ public class AB<E> implements I_AB<E> {
     }
 
     @Override
-    public E getRaiz() {
+    public E getDato() {
         if (esVacio()){
             return null;
         }
         return this.raiz.getDato();
+    }
+
+    @Override
+    public NodoAB<E> getRaiz() {
+        if (esVacio()){
+            return null;
+        }
+        return this.raiz;
     }
 
     @Override

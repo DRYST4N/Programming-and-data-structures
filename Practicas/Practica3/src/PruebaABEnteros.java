@@ -1,6 +1,4 @@
-import Jerárquicos.AB;
-import Jerárquicos.ABEnteros;
-import Jerárquicos.NodoAB;
+import Jerarquicos.ABEnteros;
 
 import java.util.Scanner;
 
@@ -64,10 +62,11 @@ public class PruebaABEnteros {
                         int minimoValorAbe1 = abe1.MinimoValorNivel(nivel);
                         int minimoValorAbe2 = abe2.MinimoValorNivel(nivel);
 
-                        System.out.println("Árbol AB1: El valor mínimo obtenido en el nivel "+nivel+" es "+minimoValorAbe1);
-                        System.out.println("Árbol AB2: El valor mínimo obtenido en el nivel "+nivel+" es "+minimoValorAbe2);
+                        System.out.println("Arbol AB1: El valor mínimo obtenido en el nivel "+nivel+" es "+minimoValorAbe1);
+                        System.out.println("Arbol AB2: El valor mínimo obtenido en el nivel "+nivel+" es "+minimoValorAbe2);
                         break;
                     case 0:
+                        System.out.println("Gracias por utilizar nuestra aplicacion...");
                         salida = true;
                         break;
                 }
