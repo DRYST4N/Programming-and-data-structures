@@ -70,22 +70,54 @@ public class AB<E> implements I_AB<E> {
 
     @Override
     public void PreOrden() {
+        PreOrden(this.raiz);
+        System.out.println();
+    }
 
+    private void PreOrden(NodoAB<E> nodo){
+        if (nodo == null) return;
+        System.out.println(nodo.getDato() + " ");
+        PreOrden(nodo.getIzquierda());
+        PreOrden(nodo.getDerecha());
     }
 
     @Override
     public void InOrden() {
+        InOrden(this.raiz);
+        System.out.println();
+    }
 
+    private void InOrden(NodoAB<E> nodo){
+        if (nodo == null) return;
+        InOrden(nodo.getIzquierda());
+        System.out.println(nodo.getDato() + " ");
+        InOrden(nodo.getDerecha());
     }
 
     @Override
     public void InOrdenConverso() {
+        InOrdenConverso(this.raiz);
+        System.out.println();
+    }
 
+    private void InOrdenConverso(NodoAB<E> nodo){
+        if (nodo == null) return;
+        InOrdenConverso(nodo.getDerecha());
+        System.out.println(nodo.getDato() + " ");
+        InOrdenConverso(nodo.getIzquierda());
     }
 
     @Override
     public void PostOrden() {
+        PostOrden(this.raiz);
+        System.out.println();
+    }
 
+    private void PostOrden(NodoAB<E> nodo){
+        if (nodo == null) return;
+        PostOrden(nodo.getIzquierda());
+        PostOrden(nodo.getDerecha());
+        System.out.println(nodo.getDato() + " ");
     }
 
     @Override

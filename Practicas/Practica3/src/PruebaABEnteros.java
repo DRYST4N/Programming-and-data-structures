@@ -24,14 +24,24 @@ public class PruebaABEnteros {
 
                 switch (opcion) {
                     case 1:
+                        System.out.println("AB1 en PreOrden: ");
+                        abe1.PreOrden();
                         break;
                     case 2:
+                        System.out.println("AB1 en InOrden: ");
+                        abe1.InOrden();
                         break;
                     case 3:
+                        System.out.println("AB1 en InOrden Converso: ");
+                        abe1.InOrdenConverso();
                         break;
                     case 4:
+                        System.out.println("AB1 en PostOrden: ");
+                        abe1.PostOrden();
                         break;
                     case 5:
+                        System.out.println("AB2 en InOrden: ");
+                        abe2.InOrden();
                         break;
                     case 6:
                         System.out.println("El AB1 es un ABB:"+(abe1.EsABB()?"SI":"NO"));
@@ -92,25 +102,24 @@ public class PruebaABEnteros {
     public static ABEnteros CrearAB1(){
 
         ABEnteros nodo104 = new ABEnteros();
-
         nodo104.setRaiz(104);
 
         //Nodos de la parte izquierda
 
         ABEnteros nodo71 = new ABEnteros();
-        nodo104.setRaiz(71);
+        nodo71.setRaiz(71);
 
         ABEnteros nodo17= new ABEnteros();
-        nodo104.setRaiz(71);
+        nodo17.setRaiz(17);
 
         ABEnteros nodo19= new ABEnteros();
-        nodo104.setRaiz(71);
+        nodo19.setRaiz(19);
 
         ABEnteros nodo3= new ABEnteros();
-        nodo104.setRaiz(3);
+        nodo3.setRaiz(3);
 
         ABEnteros nodo18= new ABEnteros();
-        nodo104.setRaiz(18);
+        nodo18.setRaiz(18);
 
         nodo104.setIzquierda(nodo71);
 
@@ -174,7 +183,7 @@ public class PruebaABEnteros {
         nodo2.setDerecha(nodo5);
 
         nodo5.setIzquierda(nodo3);
-        nodo3.setDerecha(nodo7);
+        nodo5.setDerecha(nodo7);
 
         return nodo2;
     }
