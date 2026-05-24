@@ -1,8 +1,8 @@
 package Jerarquicos;
 
 /**
- * Representa un nodo en un árbol binario.
- * Contiene un elemento de tipo genérico y referencias a sus hijos izquierdo y derecho.
+ * Representa un nodo en un árbol binario  de tipo genérico.
+ *
  * @param <E> El tipo de dato almacenado en el nodo.
  */
 public class NodoAB<E> {
@@ -13,6 +13,7 @@ public class NodoAB<E> {
     /**
      * Construye un nuevo nodo con un dato especificado.
      * Los punteros a los hijos se inicializan como null.
+     *
      * @param dato El valor a almacenar en el nodo.
      */
     public NodoAB(E dato) {

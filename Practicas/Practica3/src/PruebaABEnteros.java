@@ -2,8 +2,14 @@ import Jerarquicos.ABEnteros;
 
 import java.util.Scanner;
 
+/**
+ * Clase de prueba para el TAD ABEnteros.
+ */
 public class PruebaABEnteros {
 
+    /**
+     * Menu para realizar las pruebas
+     */
     public void menuPruebas(){
         boolean salida = false;
         Scanner sc = new Scanner(System.in);
@@ -98,6 +104,9 @@ public class PruebaABEnteros {
         }while (!salida);
     }
 
+    /**
+     * Muestra el menú principal.
+     */
     public static void menuPrincipal(){
         System.out.println("\n\tMENU PRINCIPAL");
         System.out.println("\t===============");
@@ -115,27 +124,30 @@ public class PruebaABEnteros {
         System.out.println("0. Salir");
     }
 
+    /**
+     * Crea y devuelve el árbol binario de enteros AB1.
+     */
     public static ABEnteros CrearAB1(){
 
         ABEnteros nodo104 = new ABEnteros();
-        nodo104.setRaiz(104);
+        nodo104.setDato(104);
 
         //Nodos de la parte izquierda
 
         ABEnteros nodo71 = new ABEnteros();
-        nodo71.setRaiz(71);
+        nodo71.setDato(71);
 
         ABEnteros nodo17= new ABEnteros();
-        nodo17.setRaiz(17);
+        nodo17.setDato(17);
 
         ABEnteros nodo19= new ABEnteros();
-        nodo19.setRaiz(19);
+        nodo19.setDato(19);
 
         ABEnteros nodo3= new ABEnteros();
-        nodo3.setRaiz(3);
+        nodo3.setDato(3);
 
         ABEnteros nodo18= new ABEnteros();
-        nodo18.setRaiz(18);
+        nodo18.setDato(18);
 
         nodo104.setIzquierda(nodo71);
 
@@ -148,16 +160,16 @@ public class PruebaABEnteros {
         //Nodos de la parte derecha
 
         ABEnteros nodo240= new ABEnteros();
-        nodo240.setRaiz(240);
+        nodo240.setDato(240);
 
         ABEnteros nodo108= new ABEnteros();
-        nodo108.setRaiz(108);
+        nodo108.setDato(108);
 
         ABEnteros nodo245= new ABEnteros();
-        nodo245.setRaiz(245);
+        nodo245.setDato(245);
 
         ABEnteros nodo110= new ABEnteros();
-        nodo110.setRaiz(110);
+        nodo110.setDato(110);
 
         nodo104.setDerecha(nodo240);
 
@@ -168,18 +180,22 @@ public class PruebaABEnteros {
 
         return nodo104;
     }
+
+    /**
+     * Crea y devuelve el árbol binario de enteros AB2.
+     */
     public static ABEnteros CrearAB2(){
 
         ABEnteros nodo2 = new ABEnteros();
-        nodo2.setRaiz(2);
+        nodo2.setDato(2);
 
         //Nodos de la parte izquierda
 
         ABEnteros nodo1= new ABEnteros();
-        nodo1.setRaiz(1);
+        nodo1.setDato(1);
 
         ABEnteros nodo0= new ABEnteros();
-        nodo0.setRaiz(0);
+        nodo0.setDato(0);
 
         nodo2.setIzquierda(nodo1);
 
@@ -188,13 +204,13 @@ public class PruebaABEnteros {
         //Nodos de la parte derecha
 
         ABEnteros nodo5= new ABEnteros();
-        nodo5.setRaiz(5);
+        nodo5.setDato(5);
 
         ABEnteros nodo3= new ABEnteros();
-        nodo3.setRaiz(3);
+        nodo3.setDato(3);
 
         ABEnteros nodo7= new ABEnteros();
-        nodo7.setRaiz(7);
+        nodo7.setDato(7);
 
         nodo2.setDerecha(nodo5);
 
