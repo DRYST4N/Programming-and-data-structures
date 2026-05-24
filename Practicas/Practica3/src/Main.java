@@ -3,7 +3,7 @@
 public class Main {
     public static void main(String[] args) {
         PruebaABEnteros pruebaABEnteros = new PruebaABEnteros();
-        pruebaABEnteros.menuPrincipal();
+        pruebaABEnteros.menuPruebas();
     }
 }
 

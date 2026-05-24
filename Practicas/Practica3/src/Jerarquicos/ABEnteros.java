@@ -13,20 +13,20 @@ public class ABEnteros extends AB<Integer> implements I_ABEnteros {
     @Override
     public boolean EsABB() {
 
-        return EsABB(this.getRaiz(), null, null);
+        return EsABB(this, null, null);
     }
 
-    private boolean EsABB(NodoAB<Integer>nodo, Integer minimo, Integer maximo) {
+    private boolean EsABB(AB<Integer>nodo, Integer minimo, Integer maximo) {
 
-        if (nodo == null){
+        if (nodo.esVacio()){
             return true;
         }
         if ((minimo != null && nodo.getDato() <= minimo)
                 || (maximo != null && nodo.getDato() >= maximo)){
             return false;
         }
-        return EsABB(nodo.getIzquierda(),minimo,nodo.getDato())
-                && EsABB(nodo.getDerecha(), nodo.getDato(), maximo);
+        return EsABB((AB<Integer>) nodo.getIzquierda(),minimo,nodo.getDato())
+                && EsABB((AB<Integer>) nodo.getDerecha(), nodo.getDato(), maximo);
     }
 
     @Override
@@ -35,16 +35,16 @@ public class ABEnteros extends AB<Integer> implements I_ABEnteros {
         if (esVacio()){
             return false;
         }
-        return this.getDato() == RaizIgualNodosInternos(this.getRaiz());
+        return this.getDato() == RaizIgualNodosInternos(this);
     }
 
-    private int RaizIgualNodosInternos(NodoAB<Integer> nodo){
-        if((nodo == null) || ((nodo.getIzquierda() == null)&&(nodo.getDerecha() == null))){
+    private int RaizIgualNodosInternos(AB<Integer> nodo){
+        if(nodo.esVacio() || nodo.esHoja()){
             return 0;
         }
         else{
-            return  1 + RaizIgualNodosInternos(nodo.getDerecha())
-                    + RaizIgualNodosInternos(nodo.getIzquierda());
+            return  1 + RaizIgualNodosInternos( (AB<Integer>) nodo.getIzquierda())
+                    + RaizIgualNodosInternos( (AB<Integer>) nodo.getDerecha());
         }
     }
 
@@ -55,20 +55,20 @@ public class ABEnteros extends AB<Integer> implements I_ABEnteros {
 
         nivelesFueraDeRango(n,numeroNiveles);
 
-        return MinimoValorNivel(this.getRaiz(),0,n);
+        return MinimoValorNivel(this,0,n);
     }
 
-    private int MinimoValorNivel(NodoAB<Integer> nodo, int nivelActual, int nivel){
+    private int MinimoValorNivel(AB<Integer> nodo, int nivelActual, int nivel){
 
-        if (nodo == null){
+        if (nodo.esVacio()){
             return Integer.MAX_VALUE;
         }
         if(nivel == nivelActual){
             return nodo.getDato();
         }
 
-        int minimoValorDerecha = MinimoValorNivel(nodo.getDerecha(),nivelActual + 1,nivel);
-        int minimoValorIzquierda = MinimoValorNivel(nodo.getIzquierda(), nivelActual + 1,nivel);
+        int minimoValorDerecha = MinimoValorNivel( (AB<Integer>) nodo.getDerecha(),nivelActual + 1,nivel);
+        int minimoValorIzquierda = MinimoValorNivel( (AB<Integer>) nodo.getIzquierda(), nivelActual + 1,nivel);
 
         return Math.min(minimoValorDerecha,minimoValorIzquierda);
     }

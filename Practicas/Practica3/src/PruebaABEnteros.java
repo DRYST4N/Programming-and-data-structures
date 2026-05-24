@@ -22,40 +22,57 @@ public class PruebaABEnteros {
 
                 switch (opcion) {
                     case 1:
-                        System.out.println("AB1 en PreOrden: ");
+                        System.out.println("LISTADO DE CLAVES DEL AB1 EN PREORDEN");
+                        System.out.println("=====================================");
                         abe1.PreOrden();
                         break;
                     case 2:
-                        System.out.println("AB1 en InOrden: ");
+                        System.out.println("LISTADO DE CLAVES DEL AB1 EN INORDEN");
+                        System.out.println("====================================");
                         abe1.InOrden();
                         break;
                     case 3:
-                        System.out.println("AB1 en InOrden Converso: ");
+                        System.out.println("LISTADO DE CLAVES DEL AB1 EN INORDENCONVERSO");
+                        System.out.println("============================================");
                         abe1.InOrdenConverso();
                         break;
                     case 4:
-                        System.out.println("AB1 en PostOrden: ");
+                        System.out.println("LISTADO DE CLAVES DEL AB1 EN POSTORDEN");
+                        System.out.println("======================================");
                         abe1.PostOrden();
                         break;
                     case 5:
-                        System.out.println("AB2 en InOrden: ");
+                        System.out.println("LISTADO DE CLAVES DEL AB2 EN INORDEN");
+                        System.out.println("====================================");
                         abe2.InOrden();
                         break;
                     case 6:
+                        System.out.println("COMPROBAR SI LOS ARBOLES AB1 y AB2 son ABB");
+                        System.out.println("==========================================");
                         System.out.println("El AB1 es un ABB:"+(abe1.EsABB()?"SI":"NO"));
                         System.out.println("El AB2 es un ABB:"+(abe2.EsABB()?"SI":"NO"));
                         break;
                     case 7:
+                        System.out.println("COMPROBAR RAIZ IGUAL A NODOS INTERNOS");
+                        System.out.println("=====================================");
                         System.out.println("El AB1 tiene raiz igual a nodos internos:"+(abe1.RaizIgualNodosInternos()?"SI":"NO"));
                         System.out.println("El AB2 tiene raiz igual a nodos internos:"+(abe2.RaizIgualNodosInternos()?"SI":"NO"));
                         break;
                     case 8:
+                        System.out.println("ELIMINAR EN AB1 NODOS POR DEBAJO DEL NIVEL 2");
+                        System.out.println("============================================");
                         abe1.EliminarNodosInferiores(2);
+                        abe1.InOrden();
                         break;
                     case 9:
+                        System.out.println("ELIMINAR EN AB2 NODOS POR DEBAJO DEL NIVEL 3");
+                        System.out.println("============================================");
                         abe2.EliminarNodosInferiores(3);
+                        abe2.InOrden();
                         break;
                     case 10:
+                        System.out.println("COMPROBAR MINIMO VALOR DE UN NIVEL");
+                        System.out.println("==================================");
                         System.out.println("Introduce el nivel");
                         int nivel = Integer.parseInt(sc.nextLine());
 
