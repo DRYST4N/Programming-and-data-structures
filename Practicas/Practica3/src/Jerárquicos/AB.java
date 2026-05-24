@@ -71,7 +71,7 @@ public class AB<E> implements I_AB<E> {
     @Override
     public void PreOrden() {
         PreOrden(this.raiz);
-        System.out.print("");
+        System.out.println();
     }
 
     private void PreOrden(NodoAB<E> nodo){
@@ -84,7 +84,7 @@ public class AB<E> implements I_AB<E> {
     @Override
     public void InOrden() {
         InOrden(this.raiz);
-        System.out.print("");
+        System.out.println();
     }
 
     private void InOrden(NodoAB<E> nodo){
@@ -97,7 +97,7 @@ public class AB<E> implements I_AB<E> {
     @Override
     public void InOrdenConverso() {
         InOrdenConverso(this.raiz);
-        System.out.print("");
+        System.out.println();
     }
 
     private void InOrdenConverso(NodoAB<E> nodo){
@@ -110,7 +110,7 @@ public class AB<E> implements I_AB<E> {
     @Override
     public void PostOrden() {
         PostOrden(this.raiz);
-        System.out.print("");
+        System.out.println();
     }
 
     private void PostOrden(NodoAB<E> nodo){

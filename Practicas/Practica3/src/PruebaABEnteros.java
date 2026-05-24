@@ -64,8 +64,8 @@ public class PruebaABEnteros {
                         int minimoValorAbe1 = abe1.MinimoValorNivel(nivel);
                         int minimoValorAbe2 = abe2.MinimoValorNivel(nivel);
 
-                        System.out.println("Árbol AB1: El valor mínimo obtenido en el nivel N es "+minimoValorAbe1);
-                        System.out.println("Árbol AB2: El valor mínimo obtenido en el nivel N es "+minimoValorAbe2);
+                        System.out.println("Árbol AB1: El valor mínimo obtenido en el nivel "+nivel+" es "+minimoValorAbe1);
+                        System.out.println("Árbol AB2: El valor mínimo obtenido en el nivel "+nivel+" es "+minimoValorAbe2);
                         break;
                     case 0:
                         salida = true;
@@ -75,7 +75,7 @@ public class PruebaABEnteros {
             } catch (NumberFormatException e) {
                 System.out.println("Se debe seleccionar un numero valido");
             } catch (IllegalArgumentException e) {
-                System.out.println("Error: "+e.getMessage());
+                System.out.println(e.getMessage());
             }
         System.out.print("Pulse una tecla para continuar.....");
         sc.nextLine();
@@ -146,7 +146,7 @@ public class PruebaABEnteros {
         nodo104.setDerecha(nodo240);
 
         nodo240.setIzquierda(nodo108);
-        nodo104.setDerecha(nodo245);
+        nodo240.setDerecha(nodo245);
 
         nodo108.setDerecha(nodo110);
 
